@@ -1,12 +1,21 @@
 {
   "name": "muyu-template",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
+  "description": "",
+  "author": {
+    "name": "沐雨",
+    "url": "https://github.com/bzw1204"
+  },
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc && vite build",
     "preview": "vite preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bzw1204/muyu-template.git"
   },
   "dependencies": {
     "pinia": "^2.0.32",
@@ -15,7 +24,6 @@
     "vue-router": "^4.1.6"
   },
   "devDependencies": {
-    "@ricons/antd": "^0.12.0",
     "@types/node": "^18.14.0",
     "@typescript-eslint/eslint-plugin": "^5.53.0",
     "@typescript-eslint/parser": "^5.53.0",

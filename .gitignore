@@ -22,3 +22,11 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# local history
+.lh/*
+
+# lock file
+yarn.lock
+package-lock.json
+pnpm-lock.yaml

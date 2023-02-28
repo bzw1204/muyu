@@ -1,0 +1,58 @@
+{
+    "sourceFile": "src/main.ts",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 10,
+            "patches": [
+                {
+                    "date": 1677057960831,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1677058001875,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,7 @@\n import { createApp } from 'vue'\n import App from './App.vue'\n+import router from './router'\n \n-createApp(App).mount('#app')\n+const app = createApp(App)\n+app.use(router)\n+app.mount('#app')\n"
+                },
+                {
+                    "date": 1677120363609,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,8 @@\n import { createApp } from 'vue'\n+import router from './router'\n import App from './App.vue'\n-import router from './router'\n+import 'virtual:windi.css'\n \n const app = createApp(App)\n app.use(router)\n app.mount('#app')\n"
+                },
+                {
+                    "date": 1677122040872,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,10 @@\n import { createApp } from 'vue'\n import router from './router'\n import App from './App.vue'\n+import naive from 'naive-ui'\n import 'virtual:windi.css'\n \n const app = createApp(App)\n app.use(router)\n+app.use(naive)\n app.mount('#app')\n"
+                },
+                {
+                    "date": 1677122218919,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,8 +2,9 @@\n import router from './router'\n import App from './App.vue'\n import naive from 'naive-ui'\n import 'virtual:windi.css'\n+import '@/components'\n \n const app = createApp(App)\n app.use(router)\n app.use(naive)\n"
+                },
+                {
+                    "date": 1677122227428,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n import router from './router'\n import App from './App.vue'\n import naive from 'naive-ui'\n import 'virtual:windi.css'\n-import '@/components'\n+import './components'\n \n const app = createApp(App)\n app.use(router)\n app.use(naive)\n"
+                },
+                {
+                    "date": 1677122242725,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n import router from './router'\n import App from './App.vue'\n import naive from 'naive-ui'\n import 'virtual:windi.css'\n-import './components'\n+import './components/index'\n \n const app = createApp(App)\n app.use(router)\n app.use(naive)\n"
+                },
+                {
+                    "date": 1677122282244,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n import router from './router'\n import App from './App.vue'\n import naive from 'naive-ui'\n import 'virtual:windi.css'\n-import './components/index'\n+import './layout/components/index'\n \n const app = createApp(App)\n app.use(router)\n app.use(naive)\n"
+                },
+                {
+                    "date": 1677123218227,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,10 +2,11 @@\n import router from './router'\n import App from './App.vue'\n import naive from 'naive-ui'\n import 'virtual:windi.css'\n-import './layout/components/index'\n+import components  from './layout/components/index'\n \n const app = createApp(App)\n app.use(router)\n app.use(naive)\n+app.use(components)\n app.mount('#app')\n"
+                },
+                {
+                    "date": 1677123392856,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,11 +2,9 @@\n import router from './router'\n import App from './App.vue'\n import naive from 'naive-ui'\n import 'virtual:windi.css'\n-import components  from './layout/components/index'\n \n const app = createApp(App)\n app.use(router)\n app.use(naive)\n-app.use(components)\n app.mount('#app')\n"
+                },
+                {
+                    "date": 1677125110922,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,12 @@\n import { createApp } from 'vue'\n import router from './router'\n+import store from './store'\n import App from './App.vue'\n import naive from 'naive-ui'\n import 'virtual:windi.css'\n \n const app = createApp(App)\n+app.use(store)\n app.use(router)\n app.use(naive)\n app.mount('#app')\n"
+                }
+            ],
+            "date": 1677057960831,
+            "name": "Commit-0",
+            "content": "import { createApp } from 'vue'\nimport App from './App.vue'\n\ncreateApp(App).mount('#app')\n"
+        }
+    ]
+}

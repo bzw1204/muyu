@@ -1,0 +1,330 @@
+{
+    "sourceFile": "src/router/index.ts",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 78,
+            "patches": [
+                {
+                    "date": 1677057472022,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1677057514779,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,1 +1,6 @@\n import { createRouter, createWebHistory } from 'vue-router'\r\n+\r\n+export default createRouter({\r\n+\thistory: createWebHistory(),\r\n+\troutes: []\r\n+})\r\n"
+                },
+                {
+                    "date": 1677057637854,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,9 @@\n import { createRouter, createWebHistory } from 'vue-router'\r\n \r\n+// 动态生成路由\r\n+const pagesMatches = import.meta.glob('@/views/**/page.json')\r\n+\r\n export default createRouter({\r\n \thistory: createWebHistory(),\r\n \troutes: []\r\n })\r\n"
+                },
+                {
+                    "date": 1677057667245,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n import { createRouter, createWebHistory } from 'vue-router'\r\n \r\n // 动态生成路由\r\n-const pagesMatches = import.meta.glob('@/views/**/page.json')\r\n+const pagesMatches = import.meta.glob('@/views/**/page.ts')\r\n \r\n export default createRouter({\r\n \thistory: createWebHistory(),\r\n \troutes: []\r\n"
+                },
+                {
+                    "date": 1677057947683,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n import { createRouter, createWebHistory } from 'vue-router'\r\n \r\n // 动态生成路由\r\n-const pagesMatches = import.meta.glob('@/views/**/page.ts')\r\n+const pagesMatches = import.meta.glob('@/views/**/page.ts', { eager: true, import: 'default' })\r\n \r\n export default createRouter({\r\n \thistory: createWebHistory(),\r\n \troutes: []\r\n"
+                },
+                {
+                    "date": 1677057954449,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n import { createRouter, createWebHistory } from 'vue-router'\r\n \r\n // 动态生成路由\r\n const pagesMatches = import.meta.glob('@/views/**/page.ts', { eager: true, import: 'default' })\r\n-\r\n+console.log('pagesMatches', pagesMatches)\r\n export default createRouter({\r\n \thistory: createWebHistory(),\r\n \troutes: []\r\n })\r\n"
+                },
+                {
+                    "date": 1677058169240,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,6 +4,11 @@\n const pagesMatches = import.meta.glob('@/views/**/page.ts', { eager: true, import: 'default' })\r\n console.log('pagesMatches', pagesMatches)\r\n export default createRouter({\r\n \thistory: createWebHistory(),\r\n-\troutes: []\r\n+\troutes: [\r\n+\t\t{\r\n+\t\t\tpath: '/',\r\n+\t\t\tname: 'Home'\r\n+\t\t}\r\n+\t]\r\n })\r\n"
+                },
+                {
+                    "date": 1677058248447,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,8 +7,9 @@\n \thistory: createWebHistory(),\r\n \troutes: [\r\n \t\t{\r\n \t\t\tpath: '/',\r\n-\t\t\tname: 'Home'\r\n+\t\t\tname: 'Home',\r\n+\t\t\tcomponent: () => import('@/views/index.vue')\r\n \t\t}\r\n \t]\r\n })\r\n"
+                },
+                {
+                    "date": 1677058269521,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n import { createRouter, createWebHistory } from 'vue-router'\r\n \r\n // 动态生成路由\r\n-const pagesMatches = import.meta.glob('@/views/**/page.ts', { eager: true, import: 'default' })\r\n+const pagesMatches = import.meta.glob('../views/**/page.ts', { eager: true, import: 'default' })\r\n console.log('pagesMatches', pagesMatches)\r\n export default createRouter({\r\n \thistory: createWebHistory(),\r\n \troutes: [\r\n"
+                },
+                {
+                    "date": 1677058287603,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,8 +8,8 @@\n \troutes: [\r\n \t\t{\r\n \t\t\tpath: '/',\r\n \t\t\tname: 'Home',\r\n-\t\t\tcomponent: () => import('@/views/index.vue')\r\n+\t\t\tcomponent: () => import('../views/index.vue')\r\n \t\t}\r\n \t]\r\n })\r\n"
+                },
+                {
+                    "date": 1677058445845,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,10 @@\n import { createRouter, createWebHistory } from 'vue-router'\r\n \r\n // 动态生成路由\r\n const pagesMatches = import.meta.glob('../views/**/page.ts', { eager: true, import: 'default' })\r\n-console.log('pagesMatches', pagesMatches)\r\n+const componentMatch = import.meta.glob('../views/**/index.vue', { eager: true })\r\n+console.log('pagesMatches', pagesMatches, componentMatch)\r\n export default createRouter({\r\n \thistory: createWebHistory(),\r\n \troutes: [\r\n \t\t{\r\n"
+                },
+                {
+                    "date": 1677058507977,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n import { createRouter, createWebHistory } from 'vue-router'\r\n \r\n // 动态生成路由\r\n const pagesMatches = import.meta.glob('../views/**/page.ts', { eager: true, import: 'default' })\r\n-const componentMatch = import.meta.glob('../views/**/index.vue', { eager: true })\r\n+const componentMatch = import.meta.glob('../views/**/index.vue')\r\n console.log('pagesMatches', pagesMatches, componentMatch)\r\n export default createRouter({\r\n \thistory: createWebHistory(),\r\n \troutes: [\r\n"
+                },
+                {
+                    "date": 1677058620776,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,8 +3,12 @@\n // 动态生成路由\r\n const pagesMatches = import.meta.glob('../views/**/page.ts', { eager: true, import: 'default' })\r\n const componentMatch = import.meta.glob('../views/**/index.vue')\r\n console.log('pagesMatches', pagesMatches, componentMatch)\r\n+\r\n+const routes = Object.entries(pagesMatches).map(([path, config]) => {\r\n+\tconsole.log('path', path, config)\r\n+})\r\n export default createRouter({\r\n \thistory: createWebHistory(),\r\n \troutes: [\r\n \t\t{\r\n"
+                },
+                {
+                    "date": 1677058983485,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,10 +4,10 @@\n const pagesMatches = import.meta.glob('../views/**/page.ts', { eager: true, import: 'default' })\r\n const componentMatch = import.meta.glob('../views/**/index.vue')\r\n console.log('pagesMatches', pagesMatches, componentMatch)\r\n \r\n-const routes = Object.entries(pagesMatches).map(([path, config]) => {\r\n-\tconsole.log('path', path, config)\r\n+const routes = Object.entries(pagesMatches).map(([pagePath, config]) => {\r\n+  const path = pagePath.replace(' /../views|/page.ts/g','').\r\n })\r\n export default createRouter({\r\n \thistory: createWebHistory(),\r\n \troutes: [\r\n"
+                },
+                {
+                    "date": 1677058988922,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n const componentMatch = import.meta.glob('../views/**/index.vue')\r\n console.log('pagesMatches', pagesMatches, componentMatch)\r\n \r\n const routes = Object.entries(pagesMatches).map(([pagePath, config]) => {\r\n-  const path = pagePath.replace(' /../views|/page.ts/g','').\r\n+  const path = pagePath.replace('/../views|/page.ts/g','')\r\n })\r\n export default createRouter({\r\n \thistory: createWebHistory(),\r\n \troutes: [\r\n"
+                },
+                {
+                    "date": 1677058994994,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,10 @@\n const componentMatch = import.meta.glob('../views/**/index.vue')\r\n console.log('pagesMatches', pagesMatches, componentMatch)\r\n \r\n const routes = Object.entries(pagesMatches).map(([pagePath, config]) => {\r\n-  const path = pagePath.replace('/../views|/page.ts/g','')\r\n+\tconst path = pagePath.replace('/../views|/page.ts/g', '')\r\n+\tconsole.log('path', path)\r\n })\r\n export default createRouter({\r\n \thistory: createWebHistory(),\r\n \troutes: [\r\n"
+                },
+                {
+                    "date": 1677059054389,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,8 +4,9 @@\n const pagesMatches = import.meta.glob('../views/**/page.ts', { eager: true, import: 'default' })\r\n const componentMatch = import.meta.glob('../views/**/index.vue')\r\n console.log('pagesMatches', pagesMatches, componentMatch)\r\n \r\n+const pathReg: any =  /../views|/page.ts/g\r\n const routes = Object.entries(pagesMatches).map(([pagePath, config]) => {\r\n \tconst path = pagePath.replace('/../views|/page.ts/g', '')\r\n \tconsole.log('path', path)\r\n })\r\n"
+                },
+                {
+                    "date": 1677059068103,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n const pagesMatches = import.meta.glob('../views/**/page.ts', { eager: true, import: 'default' })\r\n const componentMatch = import.meta.glob('../views/**/index.vue')\r\n console.log('pagesMatches', pagesMatches, componentMatch)\r\n \r\n-const pathReg: any =  /../views|/page.ts/g\r\n+const pathReg: any = '/../views|/page.ts/g'\r\n const routes = Object.entries(pagesMatches).map(([pagePath, config]) => {\r\n \tconst path = pagePath.replace('/../views|/page.ts/g', '')\r\n \tconsole.log('path', path)\r\n })\r\n"
+                },
+                {
+                    "date": 1677059215271,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,10 @@\n \r\n const pathReg: any = '/../views|/page.ts/g'\r\n const routes = Object.entries(pagesMatches).map(([pagePath, config]) => {\r\n \tconst path = pagePath.replace('/../views|/page.ts/g', '')\r\n-\tconsole.log('path', path)\r\n+\tconst str = '../views/dashboard/page.ts'\r\n+\tstr.replace(/../eisvw | /page.ts/g, '') // 'dashboard'\r\n })\r\n export default createRouter({\r\n \thistory: createWebHistory(),\r\n \troutes: [\r\n"
+                },
+                {
+                    "date": 1677059495578,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,11 +6,9 @@\n console.log('pagesMatches', pagesMatches, componentMatch)\r\n \r\n const pathReg: any = '/../views|/page.ts/g'\r\n const routes = Object.entries(pagesMatches).map(([pagePath, config]) => {\r\n-\tconst path = pagePath.replace('/../views|/page.ts/g', '')\r\n-\tconst str = '../views/dashboard/page.ts'\r\n-\tstr.replace(/../eisvw | /page.ts/g, '') // 'dashboard'\r\n+\tconst path = pagePath.replace(/(..\\/views|\\/page.ts)/g, '')\r\n })\r\n export default createRouter({\r\n \thistory: createWebHistory(),\r\n \troutes: [\r\n"
+                },
+                {
+                    "date": 1677059506465,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,8 +7,9 @@\n \r\n const pathReg: any = '/../views|/page.ts/g'\r\n const routes = Object.entries(pagesMatches).map(([pagePath, config]) => {\r\n \tconst path = pagePath.replace(/(..\\/views|\\/page.ts)/g, '')\r\n+  console.log('path',path)\r\n })\r\n export default createRouter({\r\n \thistory: createWebHistory(),\r\n \troutes: [\r\n"
+                },
+                {
+                    "date": 1677059517787,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n \r\n const pathReg: any = '/../views|/page.ts/g'\r\n const routes = Object.entries(pagesMatches).map(([pagePath, config]) => {\r\n \tconst path = pagePath.replace(/(..\\/views|\\/page.ts)/g, '')\r\n-  console.log('path',path)\r\n+\tconsole.log('path', path, config)\r\n })\r\n export default createRouter({\r\n \thistory: createWebHistory(),\r\n \troutes: [\r\n"
+                },
+                {
+                    "date": 1677059584467,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,8 +7,10 @@\n \r\n const pathReg: any = '/../views|/page.ts/g'\r\n const routes = Object.entries(pagesMatches).map(([pagePath, config]) => {\r\n \tconst path = pagePath.replace(/(..\\/views|\\/page.ts)/g, '')\r\n+\tconst name = path.split('/').filter(Boolean).join('_')\r\n+\r\n \tconsole.log('path', path, config)\r\n })\r\n export default createRouter({\r\n \thistory: createWebHistory(),\r\n"
+                },
+                {
+                    "date": 1677059593295,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,11 +7,11 @@\n \r\n const pathReg: any = '/../views|/page.ts/g'\r\n const routes = Object.entries(pagesMatches).map(([pagePath, config]) => {\r\n \tconst path = pagePath.replace(/(..\\/views|\\/page.ts)/g, '')\r\n-\tconst name = path.split('/').filter(Boolean).join('_')\r\n+\tconst name = path.split('/').filter(Boolean).join('-')\r\n \r\n-\tconsole.log('path', path, config)\r\n+\tconsole.log('path', path, config, name)\r\n })\r\n export default createRouter({\r\n \thistory: createWebHistory(),\r\n \troutes: [\r\n"
+                },
+                {
+                    "date": 1677059959139,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,10 +8,11 @@\n const pathReg: any = '/../views|/page.ts/g'\r\n const routes = Object.entries(pagesMatches).map(([pagePath, config]) => {\r\n \tconst path = pagePath.replace(/(..\\/views|\\/page.ts)/g, '')\r\n \tconst name = path.split('/').filter(Boolean).join('-')\r\n+\tconst componentPath = pagePath.replace('page.ts', 'index.vue')\r\n \r\n-\tconsole.log('path', path, config, name)\r\n+\tconsole.log('path', path, config, name, componentMatch[componentPath])\r\n })\r\n export default createRouter({\r\n \thistory: createWebHistory(),\r\n \troutes: [\r\n"
+                },
+                {
+                    "date": 1677060017044,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,8 @@\n const pagesMatches = import.meta.glob('../views/**/page.ts', { eager: true, import: 'default' })\r\n const componentMatch = import.meta.glob('../views/**/index.vue')\r\n console.log('pagesMatches', pagesMatches, componentMatch)\r\n \r\n-const pathReg: any = '/../views|/page.ts/g'\r\n const routes = Object.entries(pagesMatches).map(([pagePath, config]) => {\r\n \tconst path = pagePath.replace(/(..\\/views|\\/page.ts)/g, '')\r\n \tconst name = path.split('/').filter(Boolean).join('-')\r\n \tconst componentPath = pagePath.replace('page.ts', 'index.vue')\r\n"
+                },
+                {
+                    "date": 1677060023850,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,8 @@\n \r\n // 动态生成路由\r\n const pagesMatches = import.meta.glob('../views/**/page.ts', { eager: true, import: 'default' })\r\n const componentMatch = import.meta.glob('../views/**/index.vue')\r\n-console.log('pagesMatches', pagesMatches, componentMatch)\r\n \r\n const routes = Object.entries(pagesMatches).map(([pagePath, config]) => {\r\n \tconst path = pagePath.replace(/(..\\/views|\\/page.ts)/g, '')\r\n \tconst name = path.split('/').filter(Boolean).join('-')\r\n"
+                },
+                {
+                    "date": 1677060194608,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,20 +4,19 @@\n const pagesMatches = import.meta.glob('../views/**/page.ts', { eager: true, import: 'default' })\r\n const componentMatch = import.meta.glob('../views/**/index.vue')\r\n \r\n const routes = Object.entries(pagesMatches).map(([pagePath, config]) => {\r\n-\tconst path = pagePath.replace(/(..\\/views|\\/page.ts)/g, '')\r\n-\tconst name = path.split('/').filter(Boolean).join('-')\r\n+\tconst path = pagePath.replace(/(..\\/views|\\/page.ts)/g, '') || '/'\r\n+\tconst name = path.split('/').filter(Boolean).join('-') || 'index'\r\n \tconst componentPath = pagePath.replace('page.ts', 'index.vue')\r\n-\r\n+\treturn {\r\n+\t\tpath,\r\n+\t\tname,\r\n+\t\tmeta: config,\r\n+\t\tcomponent: componentMatch[componentPath]\r\n+\t}\r\n \tconsole.log('path', path, config, name, componentMatch[componentPath])\r\n })\r\n export default createRouter({\r\n \thistory: createWebHistory(),\r\n-\troutes: [\r\n-\t\t{\r\n-\t\t\tpath: '/',\r\n-\t\t\tname: 'Home',\r\n-\t\t\tcomponent: () => import('../views/index.vue')\r\n-\t\t}\r\n-\t]\r\n+\troutes: routes\r\n })\r\n"
+                },
+                {
+                    "date": 1677060267938,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n \tconst componentPath = pagePath.replace('page.ts', 'index.vue')\r\n \treturn {\r\n \t\tpath,\r\n \t\tname,\r\n-\t\tmeta: config,\r\n+\t\tmeta: config || {},\r\n \t\tcomponent: componentMatch[componentPath]\r\n \t}\r\n \tconsole.log('path', path, config, name, componentMatch[componentPath])\r\n })\r\n"
+                },
+                {
+                    "date": 1677060358189,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-import { createRouter, createWebHistory } from 'vue-router'\r\n+import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'\r\n \r\n // 动态生成路由\r\n const pagesMatches = import.meta.glob('../views/**/page.ts', { eager: true, import: 'default' })\r\n const componentMatch = import.meta.glob('../views/**/index.vue')\r\n@@ -12,10 +12,9 @@\n \t\tpath,\r\n \t\tname,\r\n \t\tmeta: config || {},\r\n \t\tcomponent: componentMatch[componentPath]\r\n-\t}\r\n-\tconsole.log('path', path, config, name, componentMatch[componentPath])\r\n+\t} as RouteRecordRaw\r\n })\r\n export default createRouter({\r\n \thistory: createWebHistory(),\r\n \troutes: routes\r\n"
+                },
+                {
+                    "date": 1677061233319,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,8 +14,14 @@\n \t\tmeta: config || {},\r\n \t\tcomponent: componentMatch[componentPath]\r\n \t} as RouteRecordRaw\r\n })\r\n+\r\n+routes.forEach((route) => {\r\n+\tconst { path } = route\r\n+\tconst hasChildren = path.split('/').filter(Boolean).length > 1\r\n+})\r\n+\r\n export default createRouter({\r\n \thistory: createWebHistory(),\r\n \troutes: routes\r\n })\r\n"
+                },
+                {
+                    "date": 1677061559100,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,13 @@\n })\r\n \r\n routes.forEach((route) => {\r\n \tconst { path } = route\r\n-\tconst hasChildren = path.split('/').filter(Boolean).length > 1\r\n+\tconst pathNames = path.split('/').filter(Boolean)\r\n+\tconst hasChildren = pathNames.length > 1\r\n+\tif (hasChildren) {\r\n+\t\troute.children = routes.filter((x) => x.path.includes(pathNames[0]) && x.path !== path)\r\n+\t}\r\n })\r\n \r\n export default createRouter({\r\n \thistory: createWebHistory(),\r\n"
+                },
+                {
+                    "date": 1677061601945,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,8 +22,9 @@\n \tconst hasChildren = pathNames.length > 1\r\n \tif (hasChildren) {\r\n \t\troute.children = routes.filter((x) => x.path.includes(pathNames[0]) && x.path !== path)\r\n \t}\r\n+\tconsole.log('route', route)\r\n })\r\n \r\n export default createRouter({\r\n \thistory: createWebHistory(),\r\n"
+                },
+                {
+                    "date": 1677061640750,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,9 @@\n \r\n routes.forEach((route) => {\r\n \tconst { path } = route\r\n \tconst pathNames = path.split('/').filter(Boolean)\r\n-\tconst hasChildren = pathNames.length > 1\r\n+\tconst hasChildren = pathNames.length === 1\r\n \tif (hasChildren) {\r\n \t\troute.children = routes.filter((x) => x.path.includes(pathNames[0]) && x.path !== path)\r\n \t}\r\n \tconsole.log('route', route)\r\n"
+                },
+                {
+                    "date": 1677061710809,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,9 @@\n \r\n routes.forEach((route) => {\r\n \tconst { path } = route\r\n \tconst pathNames = path.split('/').filter(Boolean)\r\n-\tconst hasChildren = pathNames.length === 1\r\n+\tconst hasChildren = pathNames.length === 1 && !route.component\r\n \tif (hasChildren) {\r\n \t\troute.children = routes.filter((x) => x.path.includes(pathNames[0]) && x.path !== path)\r\n \t}\r\n \tconsole.log('route', route)\r\n"
+                },
+                {
+                    "date": 1677061901203,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,8 +14,9 @@\n \t\tmeta: config || {},\r\n \t\tcomponent: componentMatch[componentPath]\r\n \t} as RouteRecordRaw\r\n })\r\n+routes.find((x) => x.path === '/')\r\n \r\n routes.forEach((route) => {\r\n \tconst { path } = route\r\n \tconst pathNames = path.split('/').filter(Boolean)\r\n"
+                },
+                {
+                    "date": 1677061938894,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n \t\tmeta: config || {},\r\n \t\tcomponent: componentMatch[componentPath]\r\n \t} as RouteRecordRaw\r\n })\r\n-routes.find((x) => x.path === '/')\r\n+!routes.find((x) => x.path === '/') && routes.push({path: '/',name: 'index',redirect: routes[0]})\r\n \r\n routes.forEach((route) => {\r\n \tconst { path } = route\r\n \tconst pathNames = path.split('/').filter(Boolean)\r\n"
+                },
+                {
+                    "date": 1677061944193,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n \t\tmeta: config || {},\r\n \t\tcomponent: componentMatch[componentPath]\r\n \t} as RouteRecordRaw\r\n })\r\n-!routes.find((x) => x.path === '/') && routes.push({path: '/',name: 'index',redirect: routes[0]})\r\n+!routes.find((x) => x.path === '/') && routes.push({ path: '/', name: 'index', redirect: routes[0].path })\r\n \r\n routes.forEach((route) => {\r\n \tconst { path } = route\r\n \tconst pathNames = path.split('/').filter(Boolean)\r\n"
+                },
+                {
+                    "date": 1677061982283,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,9 +19,9 @@\n \r\n routes.forEach((route) => {\r\n \tconst { path } = route\r\n \tconst pathNames = path.split('/').filter(Boolean)\r\n-\tconst hasChildren = pathNames.length === 1 && !route.component\r\n+\tconst hasChildren = pathNames.length === 1 && !route.component || path === '/'\r\n \tif (hasChildren) {\r\n \t\troute.children = routes.filter((x) => x.path.includes(pathNames[0]) && x.path !== path)\r\n \t}\r\n \tconsole.log('route', route)\r\n"
+                },
+                {
+                    "date": 1677062034225,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,19 +14,20 @@\n \t\tmeta: config || {},\r\n \t\tcomponent: componentMatch[componentPath]\r\n \t} as RouteRecordRaw\r\n })\r\n-!routes.find((x) => x.path === '/') && routes.push({ path: '/', name: 'index', redirect: routes[0].path })\r\n \r\n routes.forEach((route) => {\r\n \tconst { path } = route\r\n \tconst pathNames = path.split('/').filter(Boolean)\r\n-\tconst hasChildren = pathNames.length === 1 && !route.component || path === '/'\r\n+\tconst hasChildren = pathNames.length === 1 && !route.component\r\n \tif (hasChildren) {\r\n \t\troute.children = routes.filter((x) => x.path.includes(pathNames[0]) && x.path !== path)\r\n \t}\r\n \tconsole.log('route', route)\r\n })\r\n+!routes.find((x) => x.path === '/') &&\r\n+\troutes.push({ path: '/', name: 'index', redirect: routes[0].path, children: routes })\r\n \r\n export default createRouter({\r\n \thistory: createWebHistory(),\r\n \troutes: routes\r\n"
+                },
+                {
+                    "date": 1677062086791,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,10 @@\n // 动态生成路由\r\n const pagesMatches = import.meta.glob('../views/**/page.ts', { eager: true, import: 'default' })\r\n const componentMatch = import.meta.glob('../views/**/index.vue')\r\n \r\n-const routes = Object.entries(pagesMatches).map(([pagePath, config]) => {\r\n+const routes: RouteRecordRaw[] = []\r\n+const dynamicRoutes = Object.entries(pagesMatches).map(([pagePath, config]) => {\r\n \tconst path = pagePath.replace(/(..\\/views|\\/page.ts)/g, '') || '/'\r\n \tconst name = path.split('/').filter(Boolean).join('-') || 'index'\r\n \tconst componentPath = pagePath.replace('page.ts', 'index.vue')\r\n \treturn {\r\n"
+                },
+                {
+                    "date": 1677062106187,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,19 +16,19 @@\n \t\tcomponent: componentMatch[componentPath]\r\n \t} as RouteRecordRaw\r\n })\r\n \r\n-routes.forEach((route) => {\r\n+dynamicRoutes.forEach((route) => {\r\n \tconst { path } = route\r\n \tconst pathNames = path.split('/').filter(Boolean)\r\n \tconst hasChildren = pathNames.length === 1 && !route.component\r\n \tif (hasChildren) {\r\n \t\troute.children = routes.filter((x) => x.path.includes(pathNames[0]) && x.path !== path)\r\n \t}\r\n \tconsole.log('route', route)\r\n })\r\n-!routes.find((x) => x.path === '/') &&\r\n-\troutes.push({ path: '/', name: 'index', redirect: routes[0].path, children: routes })\r\n+!dynamicRoutes.find((x) => x.path === '/') &&\r\n+routes.push({ path: '/', name: 'index', redirect: routes[0].path, children: dynamicRoutes })\r\n \r\n export default createRouter({\r\n \thistory: createWebHistory(),\r\n \troutes: routes\r\n"
+                },
+                {
+                    "date": 1677062115497,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,9 @@\n \t}\r\n \tconsole.log('route', route)\r\n })\r\n !dynamicRoutes.find((x) => x.path === '/') &&\r\n-routes.push({ path: '/', name: 'index', redirect: routes[0].path, children: dynamicRoutes })\r\n+routes.push({ path: '/', name: 'index', redirect: dynamicRoutes[0].path, children: dynamicRoutes })\r\n \r\n export default createRouter({\r\n \thistory: createWebHistory(),\r\n \troutes: routes\r\n"
+                },
+                {
+                    "date": 1677062505051,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,9 @@\n \tconst { path } = route\r\n \tconst pathNames = path.split('/').filter(Boolean)\r\n \tconst hasChildren = pathNames.length === 1 && !route.component\r\n \tif (hasChildren) {\r\n-\t\troute.children = routes.filter((x) => x.path.includes(pathNames[0]) && x.path !== path)\r\n+\t\troute.children = dynamicRoutes.filter((x) => x.path.includes(pathNames[0]) && x.path !== path)\r\n \t}\r\n \tconsole.log('route', route)\r\n })\r\n !dynamicRoutes.find((x) => x.path === '/') &&\r\n"
+                },
+                {
+                    "date": 1677123487899,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,6 @@\n import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'\r\n+import Layout from '@/layout/index.vue'\r\n \r\n // 动态生成路由\r\n const pagesMatches = import.meta.glob('../views/**/page.ts', { eager: true, import: 'default' })\r\n const componentMatch = import.meta.glob('../views/**/index.vue')\r\n"
+                },
+                {
+                    "date": 1677123499962,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,9 +27,9 @@\n \t}\r\n \tconsole.log('route', route)\r\n })\r\n !dynamicRoutes.find((x) => x.path === '/') &&\r\n-routes.push({ path: '/', name: 'index', redirect: dynamicRoutes[0].path, children: dynamicRoutes })\r\n+\troutes.push({ path: '/', name: 'index', redirect: dynamicRoutes[0].path, component: Layout, children: dynamicRoutes })\r\n \r\n export default createRouter({\r\n \thistory: createWebHistory(),\r\n \troutes: routes\r\n"
+                },
+                {
+                    "date": 1677126169023,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n \tconst hasChildren = pathNames.length === 1 && !route.component\r\n \tif (hasChildren) {\r\n \t\troute.children = dynamicRoutes.filter((x) => x.path.includes(pathNames[0]) && x.path !== path)\r\n \t}\r\n-\tconsole.log('route', route)\r\n+\t// console.log('route', route)\r\n })\r\n !dynamicRoutes.find((x) => x.path === '/') &&\r\n \troutes.push({ path: '/', name: 'index', redirect: dynamicRoutes[0].path, component: Layout, children: dynamicRoutes })\r\n \r\n"
+                },
+                {
+                    "date": 1677139535111,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n \tconst hasChildren = pathNames.length === 1 && !route.component\r\n \tif (hasChildren) {\r\n \t\troute.children = dynamicRoutes.filter((x) => x.path.includes(pathNames[0]) && x.path !== path)\r\n \t}\r\n-\t// console.log('route', route)\r\n+\tconsole.log('route', route)\r\n })\r\n !dynamicRoutes.find((x) => x.path === '/') &&\r\n \troutes.push({ path: '/', name: 'index', redirect: dynamicRoutes[0].path, component: Layout, children: dynamicRoutes })\r\n \r\n"
+                },
+                {
+                    "date": 1677139907550,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,11 @@\n \tconst hasChildren = pathNames.length === 1 && !route.component\r\n \tif (hasChildren) {\r\n \t\troute.children = dynamicRoutes.filter((x) => x.path.includes(pathNames[0]) && x.path !== path)\r\n \t}\r\n-\tconsole.log('route', route)\r\n+\troute.children?.forEach((x) => {\r\n+\t\tconst repeat = x.path === route.path\r\n+\t})\r\n })\r\n !dynamicRoutes.find((x) => x.path === '/') &&\r\n \troutes.push({ path: '/', name: 'index', redirect: dynamicRoutes[0].path, component: Layout, children: dynamicRoutes })\r\n \r\n"
+                },
+                {
+                    "date": 1677140063062,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,13 +22,12 @@\n \tconst { path } = route\r\n \tconst pathNames = path.split('/').filter(Boolean)\r\n \tconst hasChildren = pathNames.length === 1 && !route.component\r\n \tif (hasChildren) {\r\n-\t\troute.children = dynamicRoutes.filter((x) => x.path.includes(pathNames[0]) && x.path !== path)\r\n+\t\tconst children = dynamicRoutes.filter((x) => x.path.includes(pathNames[0]) && x.path !== path)\r\n+\t\troute.children = children\r\n+\t\tdynamicRoutes.slice(children)\r\n \t}\r\n-\troute.children?.forEach((x) => {\r\n-\t\tconst repeat = x.path === route.path\r\n-\t})\r\n })\r\n !dynamicRoutes.find((x) => x.path === '/') &&\r\n \troutes.push({ path: '/', name: 'index', redirect: dynamicRoutes[0].path, component: Layout, children: dynamicRoutes })\r\n \r\n"
+                },
+                {
+                    "date": 1677140133980,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n \tconst hasChildren = pathNames.length === 1 && !route.component\r\n \tif (hasChildren) {\r\n \t\tconst children = dynamicRoutes.filter((x) => x.path.includes(pathNames[0]) && x.path !== path)\r\n \t\troute.children = children\r\n-\t\tdynamicRoutes.slice(children)\r\n+\t\tchildren.forEach((x) => dynamicRoutes.slice(x))\r\n \t}\r\n })\r\n !dynamicRoutes.find((x) => x.path === '/') &&\r\n \troutes.push({ path: '/', name: 'index', redirect: dynamicRoutes[0].path, component: Layout, children: dynamicRoutes })\r\n"
+                },
+                {
+                    "date": 1677140233113,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n \tconst hasChildren = pathNames.length === 1 && !route.component\r\n \tif (hasChildren) {\r\n \t\tconst children = dynamicRoutes.filter((x) => x.path.includes(pathNames[0]) && x.path !== path)\r\n \t\troute.children = children\r\n-\t\tchildren.forEach((x) => dynamicRoutes.slice(x))\r\n+\t\tchildren.forEach((x) => dynamicRoutes.slice(dynamicRoutes.indexOf(x),1))\r\n \t}\r\n })\r\n !dynamicRoutes.find((x) => x.path === '/') &&\r\n \troutes.push({ path: '/', name: 'index', redirect: dynamicRoutes[0].path, component: Layout, children: dynamicRoutes })\r\n"
+                },
+                {
+                    "date": 1677140247133,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,10 +24,11 @@\n \tconst hasChildren = pathNames.length === 1 && !route.component\r\n \tif (hasChildren) {\r\n \t\tconst children = dynamicRoutes.filter((x) => x.path.includes(pathNames[0]) && x.path !== path)\r\n \t\troute.children = children\r\n-\t\tchildren.forEach((x) => dynamicRoutes.slice(dynamicRoutes.indexOf(x),1))\r\n+\t\tchildren.forEach((x) => dynamicRoutes.slice(dynamicRoutes.indexOf(x), 1))\r\n \t}\r\n+\tconsole.log('dynamicRoutes', dynamicRoutes)\r\n })\r\n !dynamicRoutes.find((x) => x.path === '/') &&\r\n \troutes.push({ path: '/', name: 'index', redirect: dynamicRoutes[0].path, component: Layout, children: dynamicRoutes })\r\n \r\n"
+                },
+                {
+                    "date": 1677140266207,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,8 +24,9 @@\n \tconst hasChildren = pathNames.length === 1 && !route.component\r\n \tif (hasChildren) {\r\n \t\tconst children = dynamicRoutes.filter((x) => x.path.includes(pathNames[0]) && x.path !== path)\r\n \t\troute.children = children\r\n+\t\tconsole.log('children', children)\r\n \t\tchildren.forEach((x) => dynamicRoutes.slice(dynamicRoutes.indexOf(x), 1))\r\n \t}\r\n \tconsole.log('dynamicRoutes', dynamicRoutes)\r\n })\r\n"
+                },
+                {
+                    "date": 1677140351714,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,9 +25,12 @@\n \tif (hasChildren) {\r\n \t\tconst children = dynamicRoutes.filter((x) => x.path.includes(pathNames[0]) && x.path !== path)\r\n \t\troute.children = children\r\n \t\tconsole.log('children', children)\r\n-\t\tchildren.forEach((x) => dynamicRoutes.slice(dynamicRoutes.indexOf(x), 1))\r\n+\t\tchildren.forEach((x) => {\r\n+\t\t\tconsole.log('x',x,dynamicRoutes.indexOf(x))\r\n+\t\t\tdynamicRoutes.slice(dynamicRoutes.indexOf(x), 1)\r\n+\t\t})\r\n \t}\r\n \tconsole.log('dynamicRoutes', dynamicRoutes)\r\n })\r\n !dynamicRoutes.find((x) => x.path === '/') &&\r\n"
+                },
+                {
+                    "date": 1677140360743,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,13 +26,13 @@\n \t\tconst children = dynamicRoutes.filter((x) => x.path.includes(pathNames[0]) && x.path !== path)\r\n \t\troute.children = children\r\n \t\tconsole.log('children', children)\r\n \t\tchildren.forEach((x) => {\r\n-\t\t\tconsole.log('x',x,dynamicRoutes.indexOf(x))\r\n+\t\t\tconsole.log('x', x, dynamicRoutes.indexOf(x))\r\n \t\t\tdynamicRoutes.slice(dynamicRoutes.indexOf(x), 1)\r\n \t\t})\r\n \t}\r\n-\tconsole.log('dynamicRoutes', dynamicRoutes)\r\n+\t// console.log('dynamicRoutes', dynamicRoutes)\r\n })\r\n !dynamicRoutes.find((x) => x.path === '/') &&\r\n \troutes.push({ path: '/', name: 'index', redirect: dynamicRoutes[0].path, component: Layout, children: dynamicRoutes })\r\n \r\n"
+                },
+                {
+                    "date": 1677140418657,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,15 +24,15 @@\n \tconst hasChildren = pathNames.length === 1 && !route.component\r\n \tif (hasChildren) {\r\n \t\tconst children = dynamicRoutes.filter((x) => x.path.includes(pathNames[0]) && x.path !== path)\r\n \t\troute.children = children\r\n-\t\tconsole.log('children', children)\r\n+\t\t// console.log('children', children)\r\n \t\tchildren.forEach((x) => {\r\n \t\t\tconsole.log('x', x, dynamicRoutes.indexOf(x))\r\n \t\t\tdynamicRoutes.slice(dynamicRoutes.indexOf(x), 1)\r\n \t\t})\r\n+\t\tconsole.log('dynamicRoutes', dynamicRoutes)\r\n \t}\r\n-\t// console.log('dynamicRoutes', dynamicRoutes)\r\n })\r\n !dynamicRoutes.find((x) => x.path === '/') &&\r\n \troutes.push({ path: '/', name: 'index', redirect: dynamicRoutes[0].path, component: Layout, children: dynamicRoutes })\r\n \r\n"
+                },
+                {
+                    "date": 1677140496077,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,8 +30,12 @@\n \t\t\tconsole.log('x', x, dynamicRoutes.indexOf(x))\r\n \t\t\tdynamicRoutes.slice(dynamicRoutes.indexOf(x), 1)\r\n \t\t})\r\n \t\tconsole.log('dynamicRoutes', dynamicRoutes)\r\n+\t\tconst a = 'b'\r\n+\t\tconst b = ['a', 'b', 'c']\r\n+\t\tb.slice(b.indexOf(a), 1)\r\n+\t\tconsole.log('b', b)\r\n \t}\r\n })\r\n !dynamicRoutes.find((x) => x.path === '/') &&\r\n \troutes.push({ path: '/', name: 'index', redirect: dynamicRoutes[0].path, component: Layout, children: dynamicRoutes })\r\n"
+                },
+                {
+                    "date": 1677140510061,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,10 +32,10 @@\n \t\t})\r\n \t\tconsole.log('dynamicRoutes', dynamicRoutes)\r\n \t\tconst a = 'b'\r\n \t\tconst b = ['a', 'b', 'c']\r\n-\t\tb.slice(b.indexOf(a), 1)\r\n-\t\tconsole.log('b', b)\r\n+\tconst c= \tb.slice(b.indexOf(a), 1)\r\n+\t\tconsole.log('b', b,c)\r\n \t}\r\n })\r\n !dynamicRoutes.find((x) => x.path === '/') &&\r\n \troutes.push({ path: '/', name: 'index', redirect: dynamicRoutes[0].path, component: Layout, children: dynamicRoutes })\r\n"
+                },
+                {
+                    "date": 1677140540389,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,10 +32,10 @@\n \t\t})\r\n \t\tconsole.log('dynamicRoutes', dynamicRoutes)\r\n \t\tconst a = 'b'\r\n \t\tconst b = ['a', 'b', 'c']\r\n-\tconst c= \tb.slice(b.indexOf(a), 1)\r\n-\t\tconsole.log('b', b,c)\r\n+\t\tconst c = b.slice(b.indexOf(a))\r\n+\t\tconsole.log('b', b, c)\r\n \t}\r\n })\r\n !dynamicRoutes.find((x) => x.path === '/') &&\r\n \troutes.push({ path: '/', name: 'index', redirect: dynamicRoutes[0].path, component: Layout, children: dynamicRoutes })\r\n"
+                },
+                {
+                    "date": 1677140546279,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,9 +27,9 @@\n \t\troute.children = children\r\n \t\t// console.log('children', children)\r\n \t\tchildren.forEach((x) => {\r\n \t\t\tconsole.log('x', x, dynamicRoutes.indexOf(x))\r\n-\t\t\tdynamicRoutes.slice(dynamicRoutes.indexOf(x), 1)\r\n+\t\t\tdynamicRoutes.slice(dynamicRoutes.indexOf(x))\r\n \t\t})\r\n \t\tconsole.log('dynamicRoutes', dynamicRoutes)\r\n \t\tconst a = 'b'\r\n \t\tconst b = ['a', 'b', 'c']\r\n"
+                },
+                {
+                    "date": 1677140602669,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,9 +27,10 @@\n \t\troute.children = children\r\n \t\t// console.log('children', children)\r\n \t\tchildren.forEach((x) => {\r\n \t\t\tconsole.log('x', x, dynamicRoutes.indexOf(x))\r\n-\t\t\tdynamicRoutes.slice(dynamicRoutes.indexOf(x))\r\n+\t\t\tconst x1 = dynamicRoutes.slice(dynamicRoutes.indexOf(x))\r\n+\t\t\tconsole.log('x1', x1)\r\n \t\t})\r\n \t\tconsole.log('dynamicRoutes', dynamicRoutes)\r\n \t\tconst a = 'b'\r\n \t\tconst b = ['a', 'b', 'c']\r\n"
+                },
+                {
+                    "date": 1677140639104,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,9 +28,9 @@\n \t\t// console.log('children', children)\r\n \t\tchildren.forEach((x) => {\r\n \t\t\tconsole.log('x', x, dynamicRoutes.indexOf(x))\r\n \t\t\tconst x1 = dynamicRoutes.slice(dynamicRoutes.indexOf(x))\r\n-\t\t\tconsole.log('x1', x1)\r\n+\t\t\tconsole.log('x1', x1, dynamicRoutes)\r\n \t\t})\r\n \t\tconsole.log('dynamicRoutes', dynamicRoutes)\r\n \t\tconst a = 'b'\r\n \t\tconst b = ['a', 'b', 'c']\r\n"
+                },
+                {
+                    "date": 1677140705357,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,13 +30,8 @@\n \t\t\tconsole.log('x', x, dynamicRoutes.indexOf(x))\r\n \t\t\tconst x1 = dynamicRoutes.slice(dynamicRoutes.indexOf(x))\r\n \t\t\tconsole.log('x1', x1, dynamicRoutes)\r\n \t\t})\r\n-\t\tconsole.log('dynamicRoutes', dynamicRoutes)\r\n-\t\tconst a = 'b'\r\n-\t\tconst b = ['a', 'b', 'c']\r\n-\t\tconst c = b.slice(b.indexOf(a))\r\n-\t\tconsole.log('b', b, c)\r\n \t}\r\n })\r\n !dynamicRoutes.find((x) => x.path === '/') &&\r\n \troutes.push({ path: '/', name: 'index', redirect: dynamicRoutes[0].path, component: Layout, children: dynamicRoutes })\r\n"
+                },
+                {
+                    "date": 1677140720252,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,8 @@\n \t\tconst children = dynamicRoutes.filter((x) => x.path.includes(pathNames[0]) && x.path !== path)\r\n \t\troute.children = children\r\n \t\t// console.log('children', children)\r\n \t\tchildren.forEach((x) => {\r\n-\t\t\tconsole.log('x', x, dynamicRoutes.indexOf(x))\r\n \t\t\tconst x1 = dynamicRoutes.slice(dynamicRoutes.indexOf(x))\r\n \t\t\tconsole.log('x1', x1, dynamicRoutes)\r\n \t\t})\r\n \t}\r\n"
+                },
+                {
+                    "date": 1677140815564,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n const pagesMatches = import.meta.glob('../views/**/page.ts', { eager: true, import: 'default' })\r\n const componentMatch = import.meta.glob('../views/**/index.vue')\r\n \r\n const routes: RouteRecordRaw[] = []\r\n-const dynamicRoutes = Object.entries(pagesMatches).map(([pagePath, config]) => {\r\n+let dynamicRoutes = Object.entries(pagesMatches).map(([pagePath, config]) => {\r\n \tconst path = pagePath.replace(/(..\\/views|\\/page.ts)/g, '') || '/'\r\n \tconst name = path.split('/').filter(Boolean).join('-') || 'index'\r\n \tconst componentPath = pagePath.replace('page.ts', 'index.vue')\r\n \treturn {\r\n@@ -26,10 +26,10 @@\n \t\tconst children = dynamicRoutes.filter((x) => x.path.includes(pathNames[0]) && x.path !== path)\r\n \t\troute.children = children\r\n \t\t// console.log('children', children)\r\n \t\tchildren.forEach((x) => {\r\n-\t\t\tconst x1 = dynamicRoutes.slice(dynamicRoutes.indexOf(x))\r\n-\t\t\tconsole.log('x1', x1, dynamicRoutes)\r\n+\t\t\tdynamicRoutes = dynamicRoutes.slice(dynamicRoutes.indexOf(x))\r\n+\t\t\tconsole.log('x1', dynamicRoutes)\r\n \t\t})\r\n \t}\r\n })\r\n !dynamicRoutes.find((x) => x.path === '/') &&\r\n"
+                },
+                {
+                    "date": 1677140828600,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,9 @@\n \t\tconst children = dynamicRoutes.filter((x) => x.path.includes(pathNames[0]) && x.path !== path)\r\n \t\troute.children = children\r\n \t\t// console.log('children', children)\r\n \t\tchildren.forEach((x) => {\r\n-\t\t\tdynamicRoutes = dynamicRoutes.slice(dynamicRoutes.indexOf(x))\r\n+\t\t\tdynamicRoutes = dynamicRoutes.slice(dynamicRoutes.indexOf(x), 1)\r\n \t\t\tconsole.log('x1', dynamicRoutes)\r\n \t\t})\r\n \t}\r\n })\r\n"
+                },
+                {
+                    "date": 1677140842186,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,10 @@\n \t\tconst children = dynamicRoutes.filter((x) => x.path.includes(pathNames[0]) && x.path !== path)\r\n \t\troute.children = children\r\n \t\t// console.log('children', children)\r\n \t\tchildren.forEach((x) => {\r\n-\t\t\tdynamicRoutes = dynamicRoutes.slice(dynamicRoutes.indexOf(x), 1)\r\n+\t\t\tdynamicRoutes.slice(dynamicRoutes.indexOf(x), 1)\r\n+\t\t\tdynamicRoutes = dynamicRoutes\r\n \t\t\tconsole.log('x1', dynamicRoutes)\r\n \t\t})\r\n \t}\r\n })\r\n"
+                },
+                {
+                    "date": 1677141068603,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,13 +25,13 @@\n \tif (hasChildren) {\r\n \t\tconst children = dynamicRoutes.filter((x) => x.path.includes(pathNames[0]) && x.path !== path)\r\n \t\troute.children = children\r\n \t\t// console.log('children', children)\r\n-\t\tchildren.forEach((x) => {\r\n-\t\t\tdynamicRoutes.slice(dynamicRoutes.indexOf(x), 1)\r\n-\t\t\tdynamicRoutes = dynamicRoutes\r\n-\t\t\tconsole.log('x1', dynamicRoutes)\r\n-\t\t})\r\n+\t\t// children.forEach((x) => {\r\n+\t\t// \tdynamicRoutes.slice(dynamicRoutes.indexOf(x), 1)\r\n+\t\t// \tdynamicRoutes = dynamicRoutes\r\n+\t\t// \tconsole.log('x1', dynamicRoutes)\r\n+\t\t// })\r\n \t}\r\n })\r\n !dynamicRoutes.find((x) => x.path === '/') &&\r\n \troutes.push({ path: '/', name: 'index', redirect: dynamicRoutes[0].path, component: Layout, children: dynamicRoutes })\r\n"
+                },
+                {
+                    "date": 1677141573574,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,13 +1,14 @@\n import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'\r\n import Layout from '@/layout/index.vue'\r\n+import { buildRouterTree } from '@/utils/router-utils'\r\n \r\n // 动态生成路由\r\n const pagesMatches = import.meta.glob('../views/**/page.ts', { eager: true, import: 'default' })\r\n const componentMatch = import.meta.glob('../views/**/index.vue')\r\n \r\n const routes: RouteRecordRaw[] = []\r\n-let dynamicRoutes = Object.entries(pagesMatches).map(([pagePath, config]) => {\r\n+const dynamicRoutes = Object.entries(pagesMatches).map(([pagePath, config]) => {\r\n \tconst path = pagePath.replace(/(..\\/views|\\/page.ts)/g, '') || '/'\r\n \tconst name = path.split('/').filter(Boolean).join('-') || 'index'\r\n \tconst componentPath = pagePath.replace('page.ts', 'index.vue')\r\n \treturn {\r\n@@ -17,23 +18,26 @@\n \t\tcomponent: componentMatch[componentPath]\r\n \t} as RouteRecordRaw\r\n })\r\n \r\n-dynamicRoutes.forEach((route) => {\r\n-\tconst { path } = route\r\n-\tconst pathNames = path.split('/').filter(Boolean)\r\n-\tconst hasChildren = pathNames.length === 1 && !route.component\r\n-\tif (hasChildren) {\r\n-\t\tconst children = dynamicRoutes.filter((x) => x.path.includes(pathNames[0]) && x.path !== path)\r\n-\t\troute.children = children\r\n-\t\t// console.log('children', children)\r\n-\t\t// children.forEach((x) => {\r\n-\t\t// \tdynamicRoutes.slice(dynamicRoutes.indexOf(x), 1)\r\n-\t\t// \tdynamicRoutes = dynamicRoutes\r\n-\t\t// \tconsole.log('x1', dynamicRoutes)\r\n-\t\t// })\r\n-\t}\r\n-})\r\n+const x = buildRouterTree(dynamicRoutes)\r\n+console.log('x', x)\r\n+\r\n+// dynamicRoutes.forEach((route) => {\r\n+// \tconst { path } = route\r\n+// \tconst pathNames = path.split('/').filter(Boolean)\r\n+// \tconst hasChildren = pathNames.length === 1 && !route.component\r\n+// \tif (hasChildren) {\r\n+// \t\tconst children = dynamicRoutes.filter((x) => x.path.includes(pathNames[0]) && x.path !== path)\r\n+// \t\troute.children = children\r\n+// \t\t// console.log('children', children)\r\n+// \t\t// children.forEach((x) => {\r\n+// \t\t// \tdynamicRoutes.slice(dynamicRoutes.indexOf(x), 1)\r\n+// \t\t// \tdynamicRoutes = dynamicRoutes\r\n+// \t\t// \tconsole.log('x1', dynamicRoutes)\r\n+// \t\t// })\r\n+// \t}\r\n+// })\r\n !dynamicRoutes.find((x) => x.path === '/') &&\r\n \troutes.push({ path: '/', name: 'index', redirect: dynamicRoutes[0].path, component: Layout, children: dynamicRoutes })\r\n \r\n export default createRouter({\r\n"
+                },
+                {
+                    "date": 1677144168500,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -37,9 +37,9 @@\n // \t\t// })\r\n // \t}\r\n // })\r\n !dynamicRoutes.find((x) => x.path === '/') &&\r\n-\troutes.push({ path: '/', name: 'index', redirect: dynamicRoutes[0].path, component: Layout, children: dynamicRoutes })\r\n+\troutes.push({ path: '/', name: 'index', redirect: dynamicRoutes[0].path, component: Layout, children: x })\r\n \r\n export default createRouter({\r\n \thistory: createWebHistory(),\r\n \troutes: routes\r\n"
+                },
+                {
+                    "date": 1677144211195,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,9 +36,9 @@\n // \t\t// \tconsole.log('x1', dynamicRoutes)\r\n // \t\t// })\r\n // \t}\r\n // })\r\n-!dynamicRoutes.find((x) => x.path === '/') &&\r\n+!x.find((x) => x.path === '/') &&\r\n \troutes.push({ path: '/', name: 'index', redirect: dynamicRoutes[0].path, component: Layout, children: x })\r\n \r\n export default createRouter({\r\n \thistory: createWebHistory(),\r\n"
+                },
+                {
+                    "date": 1677144834658,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,25 +19,8 @@\n \t} as RouteRecordRaw\r\n })\r\n \r\n const x = buildRouterTree(dynamicRoutes)\r\n-console.log('x', x)\r\n-\r\n-// dynamicRoutes.forEach((route) => {\r\n-// \tconst { path } = route\r\n-// \tconst pathNames = path.split('/').filter(Boolean)\r\n-// \tconst hasChildren = pathNames.length === 1 && !route.component\r\n-// \tif (hasChildren) {\r\n-// \t\tconst children = dynamicRoutes.filter((x) => x.path.includes(pathNames[0]) && x.path !== path)\r\n-// \t\troute.children = children\r\n-// \t\t// console.log('children', children)\r\n-// \t\t// children.forEach((x) => {\r\n-// \t\t// \tdynamicRoutes.slice(dynamicRoutes.indexOf(x), 1)\r\n-// \t\t// \tdynamicRoutes = dynamicRoutes\r\n-// \t\t// \tconsole.log('x1', dynamicRoutes)\r\n-// \t\t// })\r\n-// \t}\r\n-// })\r\n !x.find((x) => x.path === '/') &&\r\n \troutes.push({ path: '/', name: 'index', redirect: dynamicRoutes[0].path, component: Layout, children: x })\r\n \r\n export default createRouter({\r\n"
+                },
+                {
+                    "date": 1677146069199,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,8 +9,9 @@\n const routes: RouteRecordRaw[] = []\r\n const dynamicRoutes = Object.entries(pagesMatches).map(([pagePath, config]) => {\r\n \tconst path = pagePath.replace(/(..\\/views|\\/page.ts)/g, '') || '/'\r\n \tconst name = path.split('/').filter(Boolean).join('-') || 'index'\r\n+\tconsole.log('name', name)\r\n \tconst componentPath = pagePath.replace('page.ts', 'index.vue')\r\n \treturn {\r\n \t\tpath,\r\n \t\tname,\r\n@@ -19,10 +20,11 @@\n \t} as RouteRecordRaw\r\n })\r\n \r\n const x = buildRouterTree(dynamicRoutes)\r\n-!x.find((x) => x.path === '/') &&\r\n+if (!x.find((x) => x.path === '/')) {\r\n \troutes.push({ path: '/', name: 'index', redirect: dynamicRoutes[0].path, component: Layout, children: x })\r\n+}\r\n \r\n export default createRouter({\r\n \thistory: createWebHistory(),\r\n \troutes: routes\r\n"
+                },
+                {
+                    "date": 1677146185103,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n const routes: RouteRecordRaw[] = []\r\n const dynamicRoutes = Object.entries(pagesMatches).map(([pagePath, config]) => {\r\n \tconst path = pagePath.replace(/(..\\/views|\\/page.ts)/g, '') || '/'\r\n \tconst name = path.split('/').filter(Boolean).join('-') || 'index'\r\n-\tconsole.log('name', name)\r\n+\tconsole.log('name', name, path)\r\n \tconst componentPath = pagePath.replace('page.ts', 'index.vue')\r\n \treturn {\r\n \t\tpath,\r\n \t\tname,\r\n"
+                },
+                {
+                    "date": 1677146277182,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,14 @@\n \r\n const routes: RouteRecordRaw[] = []\r\n const dynamicRoutes = Object.entries(pagesMatches).map(([pagePath, config]) => {\r\n \tconst path = pagePath.replace(/(..\\/views|\\/page.ts)/g, '') || '/'\r\n-\tconst name = path.split('/').filter(Boolean).join('-') || 'index'\r\n+\tconst name =\r\n+\t\tpath\r\n+\t\t\t.split('/')\r\n+\t\t\t.filter(Boolean)\r\n+\t\t\t.filter((x) => x !== 'components')\r\n+\t\t\t.join('-') || 'index'\r\n \tconsole.log('name', name, path)\r\n \tconst componentPath = pagePath.replace('page.ts', 'index.vue')\r\n \treturn {\r\n \t\tpath,\r\n"
+                },
+                {
+                    "date": 1677146314296,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n const componentMatch = import.meta.glob('../views/**/index.vue')\r\n \r\n const routes: RouteRecordRaw[] = []\r\n const dynamicRoutes = Object.entries(pagesMatches).map(([pagePath, config]) => {\r\n-\tconst path = pagePath.replace(/(..\\/views|\\/page.ts)/g, '') || '/'\r\n+\tconst path = pagePath.replace(/(..\\/views|components|\\/page.ts)/g, '') || '/'\r\n \tconst name =\r\n \t\tpath\r\n \t\t\t.split('/')\r\n \t\t\t.filter(Boolean)\r\n"
+                },
+                {
+                    "date": 1677146321508,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n const componentMatch = import.meta.glob('../views/**/index.vue')\r\n \r\n const routes: RouteRecordRaw[] = []\r\n const dynamicRoutes = Object.entries(pagesMatches).map(([pagePath, config]) => {\r\n-\tconst path = pagePath.replace(/(..\\/views|components|\\/page.ts)/g, '') || '/'\r\n+\tconst path = pagePath.replace(/(..\\/views|\\/components|\\/page.ts)/g, '') || '/'\r\n \tconst name =\r\n \t\tpath\r\n \t\t\t.split('/')\r\n \t\t\t.filter(Boolean)\r\n"
+                },
+                {
+                    "date": 1677146329700,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,8 @@\n \t\t\t.split('/')\r\n \t\t\t.filter(Boolean)\r\n \t\t\t.filter((x) => x !== 'components')\r\n \t\t\t.join('-') || 'index'\r\n-\tconsole.log('name', name, path)\r\n \tconst componentPath = pagePath.replace('page.ts', 'index.vue')\r\n \treturn {\r\n \t\tpath,\r\n \t\tname,\r\n"
+                }
+            ],
+            "date": 1677057472022,
+            "name": "Commit-0",
+            "content": "import { createRouter, createWebHistory } from 'vue-router'\r\n"
+        }
+    ]
+}

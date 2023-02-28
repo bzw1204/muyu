@@ -1,0 +1,254 @@
+{
+    "sourceFile": "src/utils/router-utils.ts",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 59,
+            "patches": [
+                {
+                    "date": 1677141520063,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1677141591127,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,5 +9,6 @@\n \troutes.forEach((route) => {\r\n \t\tconst { path } = route\r\n \t\tconst pathNames = path.split('/').filter(Boolean)\r\n \t})\r\n+\treturn [...routeSet]\r\n }\r\n"
+                },
+                {
+                    "date": 1677141615969,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,8 +5,9 @@\n \t\treturn []\r\n \t}\r\n \r\n \tconst routeSet = new Set(routes)\r\n+  console.log('routeSet',routeSet)\r\n \troutes.forEach((route) => {\r\n \t\tconst { path } = route\r\n \t\tconst pathNames = path.split('/').filter(Boolean)\r\n \t})\r\n"
+                },
+                {
+                    "date": 1677141697556,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,11 +5,13 @@\n \t\treturn []\r\n \t}\r\n \r\n \tconst routeSet = new Set(routes)\r\n-  console.log('routeSet',routeSet)\r\n+\tconsole.log('routeSet', routeSet)\r\n \troutes.forEach((route) => {\r\n \t\tconst { path } = route\r\n \t\tconst pathNames = path.split('/').filter(Boolean)\r\n+\t\tif (pathNames.length > 1) {\r\n+\t\t}\r\n \t})\r\n \treturn [...routeSet]\r\n }\r\n"
+                },
+                {
+                    "date": 1677142103758,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,8 +10,13 @@\n \troutes.forEach((route) => {\r\n \t\tconst { path } = route\r\n \t\tconst pathNames = path.split('/').filter(Boolean)\r\n \t\tif (pathNames.length > 1) {\r\n+\t\t\tconst parent = routes.find((x) => {\r\n+\t\t\t\tconst parentPaths = x.path.split('/').filter(Boolean)\r\n+\t\t\t\treturn parentPaths.length === 1 && parentPaths[0] === pathNames[0]\r\n+\t\t\t})\r\n+\t\t\tparent && parent.children?.push(route)\r\n \t\t}\r\n \t})\r\n \treturn [...routeSet]\r\n }\r\n"
+                },
+                {
+                    "date": 1677142163399,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,8 +15,9 @@\n \t\t\t\tconst parentPaths = x.path.split('/').filter(Boolean)\r\n \t\t\t\treturn parentPaths.length === 1 && parentPaths[0] === pathNames[0]\r\n \t\t\t})\r\n \t\t\tparent && parent.children?.push(route)\r\n+\t\t\trouteSet.delete(route)\r\n \t\t}\r\n \t})\r\n \treturn [...routeSet]\r\n }\r\n"
+                },
+                {
+                    "date": 1677142170600,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,8 @@\n \t\treturn []\r\n \t}\r\n \r\n \tconst routeSet = new Set(routes)\r\n-\tconsole.log('routeSet', routeSet)\r\n \troutes.forEach((route) => {\r\n \t\tconst { path } = route\r\n \t\tconst pathNames = path.split('/').filter(Boolean)\r\n \t\tif (pathNames.length > 1) {\r\n@@ -18,6 +17,7 @@\n \t\t\tparent && parent.children?.push(route)\r\n \t\t\trouteSet.delete(route)\r\n \t\t}\r\n \t})\r\n+  console.log('routeSet', routeSet)\r\n \treturn [...routeSet]\r\n }\r\n"
+                },
+                {
+                    "date": 1677142288547,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,11 @@\n \troutes.forEach((route) => {\r\n \t\tconst { path } = route\r\n \t\tconst pathNames = path.split('/').filter(Boolean)\r\n \t\tif (pathNames.length > 1) {\r\n-\t\t\tconst parent = routes.find((x) => {\r\n+\r\n+\t\t\tconst parent = Object.entries(routeSet).find((x,y) => {\r\n+        console.log('x',x,y)\r\n \t\t\t\tconst parentPaths = x.path.split('/').filter(Boolean)\r\n \t\t\t\treturn parentPaths.length === 1 && parentPaths[0] === pathNames[0]\r\n \t\t\t})\r\n \t\t\tparent && parent.children?.push(route)\r\n"
+                },
+                {
+                    "date": 1677142298581,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,9 @@\n \t\tconst pathNames = path.split('/').filter(Boolean)\r\n \t\tif (pathNames.length > 1) {\r\n \r\n \t\t\tconst parent = Object.entries(routeSet).find((x,y) => {\r\n-        console.log('x',x,y)\r\n+        console.log('sssss',x,y)\r\n \t\t\t\tconst parentPaths = x.path.split('/').filter(Boolean)\r\n \t\t\t\treturn parentPaths.length === 1 && parentPaths[0] === pathNames[0]\r\n \t\t\t})\r\n \t\t\tparent && parent.children?.push(route)\r\n"
+                },
+                {
+                    "date": 1677142316596,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,12 +12,12 @@\n \t\tif (pathNames.length > 1) {\r\n \r\n \t\t\tconst parent = Object.entries(routeSet).find((x,y) => {\r\n         console.log('sssss',x,y)\r\n-\t\t\t\tconst parentPaths = x.path.split('/').filter(Boolean)\r\n-\t\t\t\treturn parentPaths.length === 1 && parentPaths[0] === pathNames[0]\r\n+\t\t\t\t// const parentPaths = x.path.split('/').filter(Boolean)\r\n+\t\t\t\t// return parentPaths.length === 1 && parentPaths[0] === pathNames[0]\r\n \t\t\t})\r\n-\t\t\tparent && parent.children?.push(route)\r\n+\t\t\t// parent && parent.children?.push(route)\r\n \t\t\trouteSet.delete(route)\r\n \t\t}\r\n \t})\r\n   console.log('routeSet', routeSet)\r\n"
+                },
+                {
+                    "date": 1677142333202,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,15 +9,13 @@\n \troutes.forEach((route) => {\r\n \t\tconst { path } = route\r\n \t\tconst pathNames = path.split('/').filter(Boolean)\r\n \t\tif (pathNames.length > 1) {\r\n-\r\n-\t\t\tconst parent = Object.entries(routeSet).find((x,y) => {\r\n-        console.log('sssss',x,y)\r\n-\t\t\t\t// const parentPaths = x.path.split('/').filter(Boolean)\r\n-\t\t\t\t// return parentPaths.length === 1 && parentPaths[0] === pathNames[0]\r\n+\t\t\tconst parent = routes.find((x) => {\r\n+\t\t\t\tconst parentPaths = x.path.split('/').filter(Boolean)\r\n+\t\t\t\treturn parentPaths.length === 1 && parentPaths[0] === pathNames[0]\r\n \t\t\t})\r\n-\t\t\t// parent && parent.children?.push(route)\r\n+\t\t\tparent && parent.children?.push(route)\r\n \t\t\trouteSet.delete(route)\r\n \t\t}\r\n \t})\r\n   console.log('routeSet', routeSet)\r\n"
+                },
+                {
+                    "date": 1677142386972,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,11 +13,14 @@\n \t\t\tconst parent = routes.find((x) => {\r\n \t\t\t\tconst parentPaths = x.path.split('/').filter(Boolean)\r\n \t\t\t\treturn parentPaths.length === 1 && parentPaths[0] === pathNames[0]\r\n \t\t\t})\r\n-\t\t\tparent && parent.children?.push(route)\r\n-\t\t\trouteSet.delete(route)\r\n+\t\t\tif (parent) {\r\n+\t\t\t\trouteSet.delete(parent)\r\n+\t\t\t\tparent.children?.push(route)\r\n+\t\t\t\trouteSet.add(parent)\r\n+\t\t\t}\r\n \t\t}\r\n \t})\r\n-  console.log('routeSet', routeSet)\r\n+\tconsole.log('routeSet', routeSet)\r\n \treturn [...routeSet]\r\n }\r\n"
+                },
+                {
+                    "date": 1677142411825,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,8 +15,9 @@\n \t\t\t\treturn parentPaths.length === 1 && parentPaths[0] === pathNames[0]\r\n \t\t\t})\r\n \t\t\tif (parent) {\r\n \t\t\t\trouteSet.delete(parent)\r\n+\t\t\t\trouteSet.delete(route)\r\n \t\t\t\tparent.children?.push(route)\r\n \t\t\t\trouteSet.add(parent)\r\n \t\t\t}\r\n \t\t}\r\n"
+                },
+                {
+                    "date": 1677142464621,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,8 +17,9 @@\n \t\t\tif (parent) {\r\n \t\t\t\trouteSet.delete(parent)\r\n \t\t\t\trouteSet.delete(route)\r\n \t\t\t\tparent.children?.push(route)\r\n+\t\t\t\tconsole.log('parent', parent)\r\n \t\t\t\trouteSet.add(parent)\r\n \t\t\t}\r\n \t\t}\r\n \t})\r\n"
+                },
+                {
+                    "date": 1677142490532,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,8 +16,9 @@\n \t\t\t})\r\n \t\t\tif (parent) {\r\n \t\t\t\trouteSet.delete(parent)\r\n \t\t\t\trouteSet.delete(route)\r\n+\t\t\t\tparent.children = []\r\n \t\t\t\tparent.children?.push(route)\r\n \t\t\t\tconsole.log('parent', parent)\r\n \t\t\t\trouteSet.add(parent)\r\n \t\t\t}\r\n"
+                },
+                {
+                    "date": 1677142520027,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,8 @@\n \t\t\t\trouteSet.delete(parent)\r\n \t\t\t\trouteSet.delete(route)\r\n \t\t\t\tparent.children = []\r\n \t\t\t\tparent.children?.push(route)\r\n-\t\t\t\tconsole.log('parent', parent)\r\n \t\t\t\trouteSet.add(parent)\r\n \t\t\t}\r\n \t\t}\r\n \t})\r\n"
+                },
+                {
+                    "date": 1677142587319,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,8 +5,9 @@\n \t\treturn []\r\n \t}\r\n \r\n \tconst routeSet = new Set(routes)\r\n+\tconst parents = []\r\n \troutes.forEach((route) => {\r\n \t\tconst { path } = route\r\n \t\tconst pathNames = path.split('/').filter(Boolean)\r\n \t\tif (pathNames.length > 1) {\r\n"
+                },
+                {
+                    "date": 1677142636025,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,10 @@\n \t\t\t\tconst parentPaths = x.path.split('/').filter(Boolean)\r\n \t\t\t\treturn parentPaths.length === 1 && parentPaths[0] === pathNames[0]\r\n \t\t\t})\r\n \t\t\tif (parent) {\r\n-\t\t\t\trouteSet.delete(parent)\r\n+\t\t\t\tparents.push(parent)\r\n+\r\n \t\t\t\trouteSet.delete(route)\r\n \t\t\t\tparent.children = []\r\n \t\t\t\tparent.children?.push(route)\r\n \t\t\t\trouteSet.add(parent)\r\n"
+                },
+                {
+                    "date": 1677142753772,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,10 +15,8 @@\n \t\t\t\tconst parentPaths = x.path.split('/').filter(Boolean)\r\n \t\t\t\treturn parentPaths.length === 1 && parentPaths[0] === pathNames[0]\r\n \t\t\t})\r\n \t\t\tif (parent) {\r\n-\t\t\t\tparents.push(parent)\r\n-\r\n \t\t\t\trouteSet.delete(route)\r\n \t\t\t\tparent.children = []\r\n \t\t\t\tparent.children?.push(route)\r\n \t\t\t\trouteSet.add(parent)\r\n"
+                },
+                {
+                    "date": 1677142812820,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,8 +14,12 @@\n \t\t\tconst parent = routes.find((x) => {\r\n \t\t\t\tconst parentPaths = x.path.split('/').filter(Boolean)\r\n \t\t\t\treturn parentPaths.length === 1 && parentPaths[0] === pathNames[0]\r\n \t\t\t})\r\n+      Object.entries(routeSet).forEach(([key, value]) => {\r\n+console.log('key',key,value\r\n+)\r\n+      })\r\n \t\t\tif (parent) {\r\n \t\t\t\trouteSet.delete(route)\r\n \t\t\t\tparent.children = []\r\n \t\t\t\tparent.children?.push(route)\r\n"
+                },
+                {
+                    "date": 1677142822084,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,12 +14,11 @@\n \t\t\tconst parent = routes.find((x) => {\r\n \t\t\t\tconst parentPaths = x.path.split('/').filter(Boolean)\r\n \t\t\t\treturn parentPaths.length === 1 && parentPaths[0] === pathNames[0]\r\n \t\t\t})\r\n-      Object.entries(routeSet).forEach(([key, value]) => {\r\n-console.log('key',key,value\r\n-)\r\n-      })\r\n+\t\t\tObject.entries(routeSet).forEach(([key, value]) => {\r\n+\t\t\t\tconsole.log('key', key, value)\r\n+\t\t\t})\r\n \t\t\tif (parent) {\r\n \t\t\t\trouteSet.delete(route)\r\n \t\t\t\tparent.children = []\r\n \t\t\t\tparent.children?.push(route)\r\n"
+                },
+                {
+                    "date": 1677142877997,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,11 +14,11 @@\n \t\t\tconst parent = routes.find((x) => {\r\n \t\t\t\tconst parentPaths = x.path.split('/').filter(Boolean)\r\n \t\t\t\treturn parentPaths.length === 1 && parentPaths[0] === pathNames[0]\r\n \t\t\t})\r\n-\t\t\tObject.entries(routeSet).forEach(([key, value]) => {\r\n-\t\t\t\tconsole.log('key', key, value)\r\n-\t\t\t})\r\n+\t\t\tfor (const iterator of routeSet) {\r\n+\t\t\t\tconsole.log('iterator', iterator)\r\n+\t\t\t}\r\n \t\t\tif (parent) {\r\n \t\t\t\trouteSet.delete(route)\r\n \t\t\t\tparent.children = []\r\n \t\t\t\tparent.children?.push(route)\r\n"
+                },
+                {
+                    "date": 1677142892743,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,9 @@\n \t\t\tif (parent) {\r\n \t\t\t\trouteSet.delete(route)\r\n \t\t\t\tparent.children = []\r\n \t\t\t\tparent.children?.push(route)\r\n-\t\t\t\trouteSet.add(parent)\r\n+\t\t\t\t// routeSet.add(parent)\r\n \t\t\t}\r\n \t\t}\r\n \t})\r\n \tconsole.log('routeSet', routeSet)\r\n"
+                },
+                {
+                    "date": 1677142912205,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,14 +17,14 @@\n \t\t\t})\r\n \t\t\tfor (const iterator of routeSet) {\r\n \t\t\t\tconsole.log('iterator', iterator)\r\n \t\t\t}\r\n-\t\t\tif (parent) {\r\n-\t\t\t\trouteSet.delete(route)\r\n-\t\t\t\tparent.children = []\r\n-\t\t\t\tparent.children?.push(route)\r\n-\t\t\t\t// routeSet.add(parent)\r\n-\t\t\t}\r\n+\t\t\t// if (parent) {\r\n+\t\t\t// \trouteSet.delete(route)\r\n+\t\t\t// \tparent.children = []\r\n+\t\t\t// \tparent.children?.push(route)\r\n+\t\t\t// \t// routeSet.add(parent)\r\n+\t\t\t// }\r\n \t\t}\r\n \t})\r\n \tconsole.log('routeSet', routeSet)\r\n \treturn [...routeSet]\r\n"
+                },
+                {
+                    "date": 1677142920819,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,19 +6,20 @@\n \t}\r\n \r\n \tconst routeSet = new Set(routes)\r\n \tconst parents = []\r\n+  for (const iterator of routeSet) {\r\n+    console.log('iterator', iterator)\r\n+  }\r\n \troutes.forEach((route) => {\r\n \t\tconst { path } = route\r\n \t\tconst pathNames = path.split('/').filter(Boolean)\r\n \t\tif (pathNames.length > 1) {\r\n \t\t\tconst parent = routes.find((x) => {\r\n \t\t\t\tconst parentPaths = x.path.split('/').filter(Boolean)\r\n \t\t\t\treturn parentPaths.length === 1 && parentPaths[0] === pathNames[0]\r\n \t\t\t})\r\n-\t\t\tfor (const iterator of routeSet) {\r\n-\t\t\t\tconsole.log('iterator', iterator)\r\n-\t\t\t}\r\n+\r\n \t\t\t// if (parent) {\r\n \t\t\t// \trouteSet.delete(route)\r\n \t\t\t// \tparent.children = []\r\n \t\t\t// \tparent.children?.push(route)\r\n"
+                },
+                {
+                    "date": 1677142975454,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,27 +6,24 @@\n \t}\r\n \r\n \tconst routeSet = new Set(routes)\r\n \tconst parents = []\r\n-  for (const iterator of routeSet) {\r\n-    console.log('iterator', iterator)\r\n-  }\r\n-\troutes.forEach((route) => {\r\n-\t\tconst { path } = route\r\n+  for (const route of routeSet) {\r\n+    const { path } = route\r\n \t\tconst pathNames = path.split('/').filter(Boolean)\r\n \t\tif (pathNames.length > 1) {\r\n \t\t\tconst parent = routes.find((x) => {\r\n \t\t\t\tconst parentPaths = x.path.split('/').filter(Boolean)\r\n \t\t\t\treturn parentPaths.length === 1 && parentPaths[0] === pathNames[0]\r\n \t\t\t})\r\n \r\n-\t\t\t// if (parent) {\r\n-\t\t\t// \trouteSet.delete(route)\r\n-\t\t\t// \tparent.children = []\r\n-\t\t\t// \tparent.children?.push(route)\r\n-\t\t\t// \t// routeSet.add(parent)\r\n-\t\t\t// }\r\n+\t\t\tif (parent) {\r\n+\t\t\t\trouteSet.delete(route)\r\n+\t\t\t\tparent.children = []\r\n+\t\t\t\tparent.children?.push(route)\r\n+\t\t\t\t// routeSet.add(parent)\r\n+\t\t\t}\r\n \t\t}\r\n-\t})\r\n+  }\r\n \tconsole.log('routeSet', routeSet)\r\n \treturn [...routeSet]\r\n }\r\n"
+                },
+                {
+                    "date": 1677143134949,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,13 +10,13 @@\n   for (const route of routeSet) {\r\n     const { path } = route\r\n \t\tconst pathNames = path.split('/').filter(Boolean)\r\n \t\tif (pathNames.length > 1) {\r\n-\t\t\tconst parent = routes.find((x) => {\r\n+\t\t\tconst parent = Object.values.find((x) => {\r\n \t\t\t\tconst parentPaths = x.path.split('/').filter(Boolean)\r\n \t\t\t\treturn parentPaths.length === 1 && parentPaths[0] === pathNames[0]\r\n \t\t\t})\r\n-\r\n+      const setParent = routeSet.\r\n \t\t\tif (parent) {\r\n \t\t\t\trouteSet.delete(route)\r\n \t\t\t\tparent.children = []\r\n \t\t\t\tparent.children?.push(route)\r\n"
+                },
+                {
+                    "date": 1677143174916,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,19 +10,19 @@\n   for (const route of routeSet) {\r\n     const { path } = route\r\n \t\tconst pathNames = path.split('/').filter(Boolean)\r\n \t\tif (pathNames.length > 1) {\r\n-\t\t\tconst parent = Object.values.find((x) => {\r\n+\t\t\tconst parent = routes.find((x) => {\r\n \t\t\t\tconst parentPaths = x.path.split('/').filter(Boolean)\r\n \t\t\t\treturn parentPaths.length === 1 && parentPaths[0] === pathNames[0]\r\n \t\t\t})\r\n-      const setParent = routeSet.\r\n-\t\t\tif (parent) {\r\n-\t\t\t\trouteSet.delete(route)\r\n-\t\t\t\tparent.children = []\r\n-\t\t\t\tparent.children?.push(route)\r\n-\t\t\t\t// routeSet.add(parent)\r\n-\t\t\t}\r\n+      // const setParent = routeSet.\r\n+\t\t\t// if (parent) {\r\n+\t\t\t// \trouteSet.delete(route)\r\n+\t\t\t// \tparent.children = []\r\n+\t\t\t// \tparent.children?.push(route)\r\n+\t\t\t// \t// routeSet.add(parent)\r\n+\t\t\t// }\r\n \t\t}\r\n   }\r\n \tconsole.log('routeSet', routeSet)\r\n \treturn [...routeSet]\r\n"
+                },
+                {
+                    "date": 1677143213228,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,11 @@\n \t\treturn []\r\n \t}\r\n \r\n \tconst routeSet = new Set(routes)\r\n-\tconst parents = []\r\n+\tObject.entries(routeSet).find(x=>{\r\n+    console.log(x)\r\n+  })\r\n   for (const route of routeSet) {\r\n     const { path } = route\r\n \t\tconst pathNames = path.split('/').filter(Boolean)\r\n \t\tif (pathNames.length > 1) {\r\n"
+                },
+                {
+                    "date": 1677143221340,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n \t}\r\n \r\n \tconst routeSet = new Set(routes)\r\n \tObject.entries(routeSet).find(x=>{\r\n-    console.log(x)\r\n+    console.log('sssss',x)\r\n   })\r\n   for (const route of routeSet) {\r\n     const { path } = route\r\n \t\tconst pathNames = path.split('/').filter(Boolean)\r\n"
+                },
+                {
+                    "date": 1677143227813,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,27 +5,27 @@\n \t\treturn []\r\n \t}\r\n \r\n \tconst routeSet = new Set(routes)\r\n-\tObject.entries(routeSet).find(x=>{\r\n-    console.log('sssss',x)\r\n-  })\r\n-  for (const route of routeSet) {\r\n-    const { path } = route\r\n+\tObject.entries(routeSet).find((x) => {\r\n+\t\tconsole.log('sssss', x)\r\n+\t})\r\n+\tfor (const route of routeSet) {\r\n+\t\tconst { path } = route\r\n \t\tconst pathNames = path.split('/').filter(Boolean)\r\n \t\tif (pathNames.length > 1) {\r\n \t\t\tconst parent = routes.find((x) => {\r\n \t\t\t\tconst parentPaths = x.path.split('/').filter(Boolean)\r\n \t\t\t\treturn parentPaths.length === 1 && parentPaths[0] === pathNames[0]\r\n \t\t\t})\r\n-      // const setParent = routeSet.\r\n+\t\t\t// const setParent = routeSet.\r\n \t\t\t// if (parent) {\r\n \t\t\t// \trouteSet.delete(route)\r\n \t\t\t// \tparent.children = []\r\n \t\t\t// \tparent.children?.push(route)\r\n \t\t\t// \t// routeSet.add(parent)\r\n \t\t\t// }\r\n \t\t}\r\n-  }\r\n+\t}\r\n \tconsole.log('routeSet', routeSet)\r\n \treturn [...routeSet]\r\n }\r\n"
+                },
+                {
+                    "date": 1677143237228,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n \t\treturn []\r\n \t}\r\n \r\n \tconst routeSet = new Set(routes)\r\n-\tObject.entries(routeSet).find((x) => {\r\n+\tObject.entries(routeSet).forEach((x) => {\r\n \t\tconsole.log('sssss', x)\r\n \t})\r\n \tfor (const route of routeSet) {\r\n \t\tconst { path } = route\r\n"
+                },
+                {
+                    "date": 1677143247775,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,8 +5,9 @@\n \t\treturn []\r\n \t}\r\n \r\n \tconst routeSet = new Set(routes)\r\n+  debugger\r\n \tObject.entries(routeSet).forEach((x) => {\r\n \t\tconsole.log('sssss', x)\r\n \t})\r\n \tfor (const route of routeSet) {\r\n"
+                },
+                {
+                    "date": 1677143592510,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,20 +5,23 @@\n \t\treturn []\r\n \t}\r\n \r\n \tconst routeSet = new Set(routes)\r\n-  debugger\r\n-\tObject.entries(routeSet).forEach((x) => {\r\n-\t\tconsole.log('sssss', x)\r\n-\t})\r\n \tfor (const route of routeSet) {\r\n \t\tconst { path } = route\r\n \t\tconst pathNames = path.split('/').filter(Boolean)\r\n \t\tif (pathNames.length > 1) {\r\n-\t\t\tconst parent = routes.find((x) => {\r\n+\t\t\tlet parent = undefined\r\n+\t\t\tfor (const x of routeSet) {\r\n \t\t\t\tconst parentPaths = x.path.split('/').filter(Boolean)\r\n-\t\t\t\treturn parentPaths.length === 1 && parentPaths[0] === pathNames[0]\r\n-\t\t\t})\r\n+\t\t\t\tif (parentPaths.length === 1 && parentPaths[0] === pathNames[0]) {\r\n+\t\t\t\t\tparent = x\r\n+\t\t\t\t}\r\n+\t\t\t}\r\n+\t\t\t// const parent = routes.find((x) => {\r\n+\t\t\t// \tconst parentPaths = x.path.split('/').filter(Boolean)\r\n+\t\t\t// \treturn parentPaths.length === 1 && parentPaths[0] === pathNames[0]\r\n+\t\t\t// })\r\n \t\t\t// const setParent = routeSet.\r\n \t\t\t// if (parent) {\r\n \t\t\t// \trouteSet.delete(route)\r\n \t\t\t// \tparent.children = []\r\n"
+                },
+                {
+                    "date": 1677143598796,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,14 +21,14 @@\n \t\t\t// \tconst parentPaths = x.path.split('/').filter(Boolean)\r\n \t\t\t// \treturn parentPaths.length === 1 && parentPaths[0] === pathNames[0]\r\n \t\t\t// })\r\n \t\t\t// const setParent = routeSet.\r\n-\t\t\t// if (parent) {\r\n-\t\t\t// \trouteSet.delete(route)\r\n-\t\t\t// \tparent.children = []\r\n-\t\t\t// \tparent.children?.push(route)\r\n-\t\t\t// \t// routeSet.add(parent)\r\n-\t\t\t// }\r\n+\t\t\tif (parent) {\r\n+\t\t\t\trouteSet.delete(route)\r\n+\t\t\t\tparent.children = []\r\n+\t\t\t\tparent.children?.push(route)\r\n+\t\t\t\t// routeSet.add(parent)\r\n+\t\t\t}\r\n \t\t}\r\n \t}\r\n \tconsole.log('routeSet', routeSet)\r\n \treturn [...routeSet]\r\n"
+                },
+                {
+                    "date": 1677143622880,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,8 +14,9 @@\n \t\t\tfor (const x of routeSet) {\r\n \t\t\t\tconst parentPaths = x.path.split('/').filter(Boolean)\r\n \t\t\t\tif (parentPaths.length === 1 && parentPaths[0] === pathNames[0]) {\r\n \t\t\t\t\tparent = x\r\n+          parent.children = []\r\n \t\t\t\t}\r\n \t\t\t}\r\n \t\t\t// const parent = routes.find((x) => {\r\n \t\t\t// \tconst parentPaths = x.path.split('/').filter(Boolean)\r\n@@ -23,9 +24,9 @@\n \t\t\t// })\r\n \t\t\t// const setParent = routeSet.\r\n \t\t\tif (parent) {\r\n \t\t\t\trouteSet.delete(route)\r\n-\t\t\t\tparent.children = []\r\n+\r\n \t\t\t\tparent.children?.push(route)\r\n \t\t\t\t// routeSet.add(parent)\r\n \t\t\t}\r\n \t\t}\r\n"
+                },
+                {
+                    "date": 1677143647873,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,10 +24,9 @@\n \t\t\t// })\r\n \t\t\t// const setParent = routeSet.\r\n \t\t\tif (parent) {\r\n \t\t\t\trouteSet.delete(route)\r\n-\r\n-\t\t\t\tparent.children?.push(route)\r\n+\t\t\t\t// parent.children.push(route)\r\n \t\t\t\t// routeSet.add(parent)\r\n \t\t\t}\r\n \t\t}\r\n \t}\r\n"
+                },
+                {
+                    "date": 1677143680142,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,17 +14,18 @@\n \t\t\tfor (const x of routeSet) {\r\n \t\t\t\tconst parentPaths = x.path.split('/').filter(Boolean)\r\n \t\t\t\tif (parentPaths.length === 1 && parentPaths[0] === pathNames[0]) {\r\n \t\t\t\t\tparent = x\r\n-          parent.children = []\r\n+\t\t\t\t\tparent.children = []\r\n \t\t\t\t}\r\n \t\t\t}\r\n \t\t\t// const parent = routes.find((x) => {\r\n \t\t\t// \tconst parentPaths = x.path.split('/').filter(Boolean)\r\n \t\t\t// \treturn parentPaths.length === 1 && parentPaths[0] === pathNames[0]\r\n \t\t\t// })\r\n \t\t\t// const setParent = routeSet.\r\n \t\t\tif (parent) {\r\n+\t\t\t\tconsole.log('找到parent', parent)\r\n \t\t\t\trouteSet.delete(route)\r\n \t\t\t\t// parent.children.push(route)\r\n \t\t\t\t// routeSet.add(parent)\r\n \t\t\t}\r\n"
+                },
+                {
+                    "date": 1677143700612,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,9 +23,9 @@\n \t\t\t// \treturn parentPaths.length === 1 && parentPaths[0] === pathNames[0]\r\n \t\t\t// })\r\n \t\t\t// const setParent = routeSet.\r\n \t\t\tif (parent) {\r\n-\t\t\t\tconsole.log('找到parent', parent)\r\n+\t\t\t\tconsole.log('找到parent', parent, route)\r\n \t\t\t\trouteSet.delete(route)\r\n \t\t\t\t// parent.children.push(route)\r\n \t\t\t\t// routeSet.add(parent)\r\n \t\t\t}\r\n"
+                },
+                {
+                    "date": 1677143724230,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,8 +6,9 @@\n \t}\r\n \r\n \tconst routeSet = new Set(routes)\r\n \tfor (const route of routeSet) {\r\n+    console.log('route',route)\r\n \t\tconst { path } = route\r\n \t\tconst pathNames = path.split('/').filter(Boolean)\r\n \t\tif (pathNames.length > 1) {\r\n \t\t\tlet parent = undefined\r\n"
+                },
+                {
+                    "date": 1677143738081,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,9 +25,9 @@\n \t\t\t// })\r\n \t\t\t// const setParent = routeSet.\r\n \t\t\tif (parent) {\r\n \t\t\t\tconsole.log('找到parent', parent, route)\r\n-\t\t\t\trouteSet.delete(route)\r\n+\t\t\t\t// routeSet.delete(route)\r\n \t\t\t\t// parent.children.push(route)\r\n \t\t\t\t// routeSet.add(parent)\r\n \t\t\t}\r\n \t\t}\r\n"
+                },
+                {
+                    "date": 1677143743458,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n \t\t\t// \treturn parentPaths.length === 1 && parentPaths[0] === pathNames[0]\r\n \t\t\t// })\r\n \t\t\t// const setParent = routeSet.\r\n \t\t\tif (parent) {\r\n-\t\t\t\tconsole.log('找到parent', parent, route)\r\n+\t\t\t\t// console.log('找到parent', parent, route)\r\n \t\t\t\t// routeSet.delete(route)\r\n \t\t\t\t// parent.children.push(route)\r\n \t\t\t\t// routeSet.add(parent)\r\n \t\t\t}\r\n"
+                },
+                {
+                    "date": 1677143750799,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n \t\t\t// \treturn parentPaths.length === 1 && parentPaths[0] === pathNames[0]\r\n \t\t\t// })\r\n \t\t\t// const setParent = routeSet.\r\n \t\t\tif (parent) {\r\n-\t\t\t\t// console.log('找到parent', parent, route)\r\n+\t\t\t\tconsole.log('找到parent', parent, route)\r\n \t\t\t\t// routeSet.delete(route)\r\n \t\t\t\t// parent.children.push(route)\r\n \t\t\t\t// routeSet.add(parent)\r\n \t\t\t}\r\n"
+                },
+                {
+                    "date": 1677143760609,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,8 @@\n \t}\r\n \r\n \tconst routeSet = new Set(routes)\r\n \tfor (const route of routeSet) {\r\n-    console.log('route',route)\r\n \t\tconst { path } = route\r\n \t\tconst pathNames = path.split('/').filter(Boolean)\r\n \t\tif (pathNames.length > 1) {\r\n \t\t\tlet parent = undefined\r\n@@ -18,13 +17,8 @@\n \t\t\t\t\tparent = x\r\n \t\t\t\t\tparent.children = []\r\n \t\t\t\t}\r\n \t\t\t}\r\n-\t\t\t// const parent = routes.find((x) => {\r\n-\t\t\t// \tconst parentPaths = x.path.split('/').filter(Boolean)\r\n-\t\t\t// \treturn parentPaths.length === 1 && parentPaths[0] === pathNames[0]\r\n-\t\t\t// })\r\n-\t\t\t// const setParent = routeSet.\r\n \t\t\tif (parent) {\r\n \t\t\t\tconsole.log('找到parent', parent, route)\r\n \t\t\t\t// routeSet.delete(route)\r\n \t\t\t\t// parent.children.push(route)\r\n"
+                },
+                {
+                    "date": 1677143781518,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n \t\t\t}\r\n \t\t\tif (parent) {\r\n \t\t\t\tconsole.log('找到parent', parent, route)\r\n \t\t\t\t// routeSet.delete(route)\r\n-\t\t\t\t// parent.children.push(route)\r\n+\t\t\t\tparent.children?.push(route)\r\n \t\t\t\t// routeSet.add(parent)\r\n \t\t\t}\r\n \t\t}\r\n \t}\r\n"
+                },
+                {
+                    "date": 1677143818472,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,11 +19,11 @@\n \t\t\t\t}\r\n \t\t\t}\r\n \t\t\tif (parent) {\r\n \t\t\t\tconsole.log('找到parent', parent, route)\r\n-\t\t\t\t// routeSet.delete(route)\r\n+\t\t\t\trouteSet.delete(route)\r\n \t\t\t\tparent.children?.push(route)\r\n-\t\t\t\t// routeSet.add(parent)\r\n+\t\t\t\trouteSet.add(parent)\r\n \t\t\t}\r\n \t\t}\r\n \t}\r\n \tconsole.log('routeSet', routeSet)\r\n"
+                },
+                {
+                    "date": 1677143908078,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n \tconst routeSet = new Set(routes)\r\n \tfor (const route of routeSet) {\r\n \t\tconst { path } = route\r\n \t\tconst pathNames = path.split('/').filter(Boolean)\r\n-\t\tif (pathNames.length > 1) {\r\n+\t\tif (pathNames.length === 1 && route.component === undefined) {\r\n \t\t\tlet parent = undefined\r\n \t\t\tfor (const x of routeSet) {\r\n \t\t\t\tconst parentPaths = x.path.split('/').filter(Boolean)\r\n \t\t\t\tif (parentPaths.length === 1 && parentPaths[0] === pathNames[0]) {\r\n"
+                },
+                {
+                    "date": 1677143929054,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n \t\tif (pathNames.length === 1 && route.component === undefined) {\r\n \t\t\tlet parent = undefined\r\n \t\t\tfor (const x of routeSet) {\r\n \t\t\t\tconst parentPaths = x.path.split('/').filter(Boolean)\r\n-\t\t\t\tif (parentPaths.length === 1 && parentPaths[0] === pathNames[0]) {\r\n+\t\t\t\tif (parentPaths.length > 1 && parentPaths[0] === pathNames[0]) {\r\n \t\t\t\t\tparent = x\r\n \t\t\t\t\tparent.children = []\r\n \t\t\t\t}\r\n \t\t\t}\r\n"
+                },
+                {
+                    "date": 1677143956389,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,8 +8,9 @@\n \tconst routeSet = new Set(routes)\r\n \tfor (const route of routeSet) {\r\n \t\tconst { path } = route\r\n \t\tconst pathNames = path.split('/').filter(Boolean)\r\n+\t\t// 判断是否含有二级菜单\r\n \t\tif (pathNames.length === 1 && route.component === undefined) {\r\n \t\t\tlet parent = undefined\r\n \t\t\tfor (const x of routeSet) {\r\n \t\t\t\tconst parentPaths = x.path.split('/').filter(Boolean)\r\n"
+                },
+                {
+                    "date": 1677144065280,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,14 +10,13 @@\n \t\tconst { path } = route\r\n \t\tconst pathNames = path.split('/').filter(Boolean)\r\n \t\t// 判断是否含有二级菜单\r\n \t\tif (pathNames.length === 1 && route.component === undefined) {\r\n-\t\t\tlet parent = undefined\r\n+\t\t\troute.children = []\r\n \t\t\tfor (const x of routeSet) {\r\n-\t\t\t\tconst parentPaths = x.path.split('/').filter(Boolean)\r\n-\t\t\t\tif (parentPaths.length > 1 && parentPaths[0] === pathNames[0]) {\r\n+\t\t\t\tconst childPaths = x.path.split('/').filter(Boolean)\r\n+\t\t\t\tif (childPaths.length > 1 && childPaths[0] === pathNames[0]) {\r\n \t\t\t\t\tparent = x\r\n-\t\t\t\t\tparent.children = []\r\n \t\t\t\t}\r\n \t\t\t}\r\n \t\t\tif (parent) {\r\n \t\t\t\tconsole.log('找到parent', parent, route)\r\n"
+                },
+                {
+                    "date": 1677144088955,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,17 +14,12 @@\n \t\t\troute.children = []\r\n \t\t\tfor (const x of routeSet) {\r\n \t\t\t\tconst childPaths = x.path.split('/').filter(Boolean)\r\n \t\t\t\tif (childPaths.length > 1 && childPaths[0] === pathNames[0]) {\r\n-\t\t\t\t\tparent = x\r\n+\t\t\t\t\troute.children.push(x)\r\n+\t\t\t\t\trouteSet.delete(x)\r\n \t\t\t\t}\r\n \t\t\t}\r\n-\t\t\tif (parent) {\r\n-\t\t\t\tconsole.log('找到parent', parent, route)\r\n-\t\t\t\trouteSet.delete(route)\r\n-\t\t\t\tparent.children?.push(route)\r\n-\t\t\t\trouteSet.add(parent)\r\n-\t\t\t}\r\n \t\t}\r\n \t}\r\n \tconsole.log('routeSet', routeSet)\r\n \treturn [...routeSet]\r\n"
+                },
+                {
+                    "date": 1677145640772,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,6 @@\n-import { RouteRecordRaw } from 'vue-router'\r\n+import { RouteRecordRaw, RouterLink } from 'vue-router'\r\n+import { MenuOption } from 'naive-ui'\r\n \r\n export function buildRouterTree(routes: RouteRecordRaw[]) {\r\n \tif (routes.length === 0) {\r\n \t\treturn []\r\n@@ -23,4 +24,43 @@\n \t}\r\n \tconsole.log('routeSet', routeSet)\r\n \treturn [...routeSet]\r\n }\r\n+\r\n+export function filterRouter<T extends RouteRecordRaw, K extends keyof T>(\r\n+\trouterList: T | T[],\r\n+\tignore: string[],\r\n+\tmatchMode?: K\r\n+): T[] {\r\n+\t// 校验是否是Array类型，不是转换成Array类型\r\n+\tconst routes: T[] =\r\n+\t\tObject.prototype.toString.call(routerList) === '[object Array]' ? (routerList as T[]) : [routerList as T]\r\n+\tif (ignore.length === 0) return routes\r\n+\tif (routes.length === 0) return []\r\n+\treturn routes.filter(({ [matchMode ?? 'name']: matchValue, meta }) => {\r\n+\t\treturn !ignore.includes(matchValue as string) && !meta?.hideInMenu\r\n+\t})\r\n+}\r\n+\r\n+function renderIcon(icon?: Component) {\r\n+\tif (!icon) return\r\n+\treturn () => h(NIcon, null, { default: () => h(icon) })\r\n+}\r\n+\r\n+export function generatorMenu<T extends RouteRecordRaw>(routerMap: T[]): MenuOption[] {\r\n+\tconst ignore = ['notFound', 'root', 'login', '403', '404', '500']\r\n+\treturn filterRouter(routerMap, ignore, 'name').map((item) => {\r\n+\t\tconst { meta, path, children = [] } = item\r\n+\t\tconst currentMenu = {\r\n+\t\t\tlabel: () => h(RouterLink, { to: { path } }, { default: () => meta?.name || '' }),\r\n+\t\t\tkey: path,\r\n+\t\t\ticon: renderIcon(meta?.icon),\r\n+\t\t\tchildren: []\r\n+\t\t}\r\n+\t\t// 是否有子菜单，并递归处理\r\n+\t\tif (item.children && item.children.length > 0) {\r\n+\t\t\t// Recursion\r\n+\t\t\tcurrentMenu.children = generatorMenu(item.children)\r\n+\t\t}\r\n+\t\treturn currentMenu\r\n+\t})\r\n+}\r\n"
+                },
+                {
+                    "date": 1677145649882,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -49,9 +49,9 @@\n export function generatorMenu<T extends RouteRecordRaw>(routerMap: T[]): MenuOption[] {\r\n \tconst ignore = ['notFound', 'root', 'login', '403', '404', '500']\r\n \treturn filterRouter(routerMap, ignore, 'name').map((item) => {\r\n \t\tconst { meta, path, children = [] } = item\r\n-\t\tconst currentMenu = {\r\n+\t\tconst currentMenu: MenuOption = {\r\n \t\t\tlabel: () => h(RouterLink, { to: { path } }, { default: () => meta?.name || '' }),\r\n \t\t\tkey: path,\r\n \t\t\ticon: renderIcon(meta?.icon),\r\n \t\t\tchildren: []\r\n"
+                },
+                {
+                    "date": 1677145668538,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,9 +36,9 @@\n \t\tObject.prototype.toString.call(routerList) === '[object Array]' ? (routerList as T[]) : [routerList as T]\r\n \tif (ignore.length === 0) return routes\r\n \tif (routes.length === 0) return []\r\n \treturn routes.filter(({ [matchMode ?? 'name']: matchValue, meta }) => {\r\n-\t\treturn !ignore.includes(matchValue as string) && !meta?.hideInMenu\r\n+\t\treturn !ignore.includes(matchValue as string) && !meta?.hidden\r\n \t})\r\n }\r\n \r\n function renderIcon(icon?: Component) {\r\n"
+                },
+                {
+                    "date": 1677145744501,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -56,11 +56,11 @@\n \t\t\ticon: renderIcon(meta?.icon),\r\n \t\t\tchildren: []\r\n \t\t}\r\n \t\t// 是否有子菜单，并递归处理\r\n-\t\tif (item.children && item.children.length > 0) {\r\n+\t\tif (children.length > 0) {\r\n \t\t\t// Recursion\r\n-\t\t\tcurrentMenu.children = generatorMenu(item.children)\r\n+\t\t\tcurrentMenu.children = generatorMenu(children)\r\n \t\t}\r\n \t\treturn currentMenu\r\n \t})\r\n }\r\n"
+                },
+                {
+                    "date": 1677145765117,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -52,14 +52,14 @@\n \t\tconst { meta, path, children = [] } = item\r\n \t\tconst currentMenu: MenuOption = {\r\n \t\t\tlabel: () => h(RouterLink, { to: { path } }, { default: () => meta?.name || '' }),\r\n \t\t\tkey: path,\r\n-\t\t\ticon: renderIcon(meta?.icon),\r\n-\t\t\tchildren: []\r\n+\t\t\ticon: renderIcon(meta?.icon)\r\n \t\t}\r\n \t\t// 是否有子菜单，并递归处理\r\n \t\tif (children.length > 0) {\r\n \t\t\t// Recursion\r\n+\t\t\tcurrentMenu.children = []\r\n \t\t\tcurrentMenu.children = generatorMenu(children)\r\n \t\t}\r\n \t\treturn currentMenu\r\n \t})\r\n"
+                },
+                {
+                    "date": 1677148277546,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -48,8 +48,9 @@\n \r\n export function generatorMenu<T extends RouteRecordRaw>(routerMap: T[]): MenuOption[] {\r\n \tconst ignore = ['notFound', 'root', 'login', '403', '404', '500']\r\n \treturn filterRouter(routerMap, ignore, 'name').map((item) => {\r\n+\t\tconsole.log('item', item)\r\n \t\tconst { meta, path, children = [] } = item\r\n \t\tconst currentMenu: MenuOption = {\r\n \t\t\tlabel: () => h(RouterLink, { to: { path } }, { default: () => meta?.name || '' }),\r\n \t\t\tkey: path,\r\n"
+                },
+                {
+                    "date": 1677148305819,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -48,10 +48,9 @@\n \r\n export function generatorMenu<T extends RouteRecordRaw>(routerMap: T[]): MenuOption[] {\r\n \tconst ignore = ['notFound', 'root', 'login', '403', '404', '500']\r\n \treturn filterRouter(routerMap, ignore, 'name').map((item) => {\r\n-\t\tconsole.log('item', item)\r\n-\t\tconst { meta, path, children = [] } = item\r\n+\t\tconst { meta, path,component, children = [] } = item\r\n \t\tconst currentMenu: MenuOption = {\r\n \t\t\tlabel: () => h(RouterLink, { to: { path } }, { default: () => meta?.name || '' }),\r\n \t\t\tkey: path,\r\n \t\t\ticon: renderIcon(meta?.icon)\r\n"
+                },
+                {
+                    "date": 1677148351208,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -48,11 +48,11 @@\n \r\n export function generatorMenu<T extends RouteRecordRaw>(routerMap: T[]): MenuOption[] {\r\n \tconst ignore = ['notFound', 'root', 'login', '403', '404', '500']\r\n \treturn filterRouter(routerMap, ignore, 'name').map((item) => {\r\n-\t\tconst { meta, path,component, children = [] } = item\r\n+\t\tconst { meta, path, component, children = [] } = item\r\n \t\tconst currentMenu: MenuOption = {\r\n-\t\t\tlabel: () => h(RouterLink, { to: { path } }, { default: () => meta?.name || '' }),\r\n+\t\t\tlabel: component ? () => h(RouterLink, { to: { path } }, { default: () => meta?.name || '' }) : meta?.name,\r\n \t\t\tkey: path,\r\n \t\t\ticon: renderIcon(meta?.icon)\r\n \t\t}\r\n \t\t// 是否有子菜单，并递归处理\r\n"
+                },
+                {
+                    "date": 1677205896293,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,66 +1,61 @@\n import { RouteRecordRaw, RouterLink } from 'vue-router'\r\n import { MenuOption } from 'naive-ui'\r\n \r\n export function buildRouterTree(routes: RouteRecordRaw[]) {\r\n-\tif (routes.length === 0) {\r\n-\t\treturn []\r\n-\t}\r\n+  if (routes.length === 0) {\r\n+    return []\r\n+  }\r\n \r\n-\tconst routeSet = new Set(routes)\r\n-\tfor (const route of routeSet) {\r\n-\t\tconst { path } = route\r\n-\t\tconst pathNames = path.split('/').filter(Boolean)\r\n-\t\t// 判断是否含有二级菜单\r\n-\t\tif (pathNames.length === 1 && route.component === undefined) {\r\n-\t\t\troute.children = []\r\n-\t\t\tfor (const x of routeSet) {\r\n-\t\t\t\tconst childPaths = x.path.split('/').filter(Boolean)\r\n-\t\t\t\tif (childPaths.length > 1 && childPaths[0] === pathNames[0]) {\r\n-\t\t\t\t\troute.children.push(x)\r\n-\t\t\t\t\trouteSet.delete(x)\r\n-\t\t\t\t}\r\n-\t\t\t}\r\n-\t\t}\r\n-\t}\r\n-\tconsole.log('routeSet', routeSet)\r\n-\treturn [...routeSet]\r\n+  const routeSet = new Set(routes)\r\n+  for (const route of routeSet) {\r\n+    const { path } = route\r\n+    const pathNames = path.split('/').filter(Boolean)\r\n+    // 判断是否含有二级菜单\r\n+    if (pathNames.length === 1 && route.component === undefined) {\r\n+      route.children = []\r\n+      for (const x of routeSet) {\r\n+        const childPaths = x.path.split('/').filter(Boolean)\r\n+        if (childPaths.length > 1 && childPaths[0] === pathNames[0]) {\r\n+          route.children.push(x)\r\n+          routeSet.delete(x)\r\n+        }\r\n+      }\r\n+    }\r\n+  }\r\n+  console.log('routeSet', routeSet)\r\n+  return [...routeSet]\r\n }\r\n \r\n-export function filterRouter<T extends RouteRecordRaw, K extends keyof T>(\r\n-\trouterList: T | T[],\r\n-\tignore: string[],\r\n-\tmatchMode?: K\r\n-): T[] {\r\n-\t// 校验是否是Array类型，不是转换成Array类型\r\n-\tconst routes: T[] =\r\n-\t\tObject.prototype.toString.call(routerList) === '[object Array]' ? (routerList as T[]) : [routerList as T]\r\n-\tif (ignore.length === 0) return routes\r\n-\tif (routes.length === 0) return []\r\n-\treturn routes.filter(({ [matchMode ?? 'name']: matchValue, meta }) => {\r\n-\t\treturn !ignore.includes(matchValue as string) && !meta?.hidden\r\n-\t})\r\n+export function filterRouter<T extends RouteRecordRaw, K extends keyof T>(routerList: T | T[], ignore: string[], matchMode?: K): T[] {\r\n+  // 校验是否是Array类型，不是转换成Array类型\r\n+  const routes: T[] = Object.prototype.toString.call(routerList) === '[object Array]' ? (routerList as T[]) : [routerList as T]\r\n+  if (ignore.length === 0) return routes\r\n+  if (routes.length === 0) return []\r\n+  return routes.filter(({ [matchMode ?? 'name']: matchValue, meta }) => {\r\n+    return !ignore.includes(matchValue as string) && !meta?.hidden\r\n+  })\r\n }\r\n \r\n function renderIcon(icon?: Component) {\r\n-\tif (!icon) return\r\n-\treturn () => h(NIcon, null, { default: () => h(icon) })\r\n+  if (!icon) return\r\n+  return () => h(NIcon, null, { default: () => h(icon) })\r\n }\r\n \r\n export function generatorMenu<T extends RouteRecordRaw>(routerMap: T[]): MenuOption[] {\r\n-\tconst ignore = ['notFound', 'root', 'login', '403', '404', '500']\r\n-\treturn filterRouter(routerMap, ignore, 'name').map((item) => {\r\n-\t\tconst { meta, path, component, children = [] } = item\r\n-\t\tconst currentMenu: MenuOption = {\r\n-\t\t\tlabel: component ? () => h(RouterLink, { to: { path } }, { default: () => meta?.name || '' }) : meta?.name,\r\n-\t\t\tkey: path,\r\n-\t\t\ticon: renderIcon(meta?.icon)\r\n-\t\t}\r\n-\t\t// 是否有子菜单，并递归处理\r\n-\t\tif (children.length > 0) {\r\n-\t\t\t// Recursion\r\n-\t\t\tcurrentMenu.children = []\r\n-\t\t\tcurrentMenu.children = generatorMenu(children)\r\n-\t\t}\r\n-\t\treturn currentMenu\r\n-\t})\r\n+  const ignore = ['notFound', 'root', 'login', '403', '404', '500']\r\n+  return filterRouter(routerMap, ignore, 'name').map((item) => {\r\n+    const { meta, path, component, children = [] } = item\r\n+    const currentMenu: MenuOption = {\r\n+      label: component ? () => h(RouterLink, { to: { path } }, { default: () => meta?.name || '' }) : meta?.name || '',\r\n+      key: path,\r\n+      icon: renderIcon(meta?.icon)\r\n+    }\r\n+    // 是否有子菜单，并递归处理\r\n+    if (children.length > 0) {\r\n+      // Recursion\r\n+      currentMenu.children = []\r\n+      currentMenu.children = generatorMenu(children)\r\n+    }\r\n+    return currentMenu\r\n+  })\r\n }\r\n"
+                }
+            ],
+            "date": 1677141520063,
+            "name": "Commit-0",
+            "content": "import { RouteRecordRaw } from 'vue-router'\r\n\r\nexport function buildRouterTree(routes: RouteRecordRaw[]) {\r\n\tif (routes.length === 0) {\r\n\t\treturn []\r\n\t}\r\n\r\n\tconst routeSet = new Set(routes)\r\n\troutes.forEach((route) => {\r\n\t\tconst { path } = route\r\n\t\tconst pathNames = path.split('/').filter(Boolean)\r\n\t})\r\n}\r\n"
+        }
+    ]
+}

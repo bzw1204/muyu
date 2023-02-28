@@ -1,0 +1,30 @@
+{
+    "sourceFile": "src/views/settings/user-manager/index.vue",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 3,
+            "patches": [
+                {
+                    "date": 1677060685687,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1677557989406,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,10 @@\n <template>\r\n   <div>\r\n-用户管理\r\n+<n-space>\r\n+  用户管理\r\n+  <n-button @click=\"()=> router.push()\">详情</n-button>\r\n+</n-space>\r\n   </div>\r\n </template>\r\n \r\n <script setup lang=\"ts\">\r\n"
+                },
+                {
+                    "date": 1677558227999,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,7 +6,13 @@\n     </n-space>\r\n   </div>\r\n </template>\r\n \r\n-<script setup lang=\"ts\"></script>\r\n+<script setup lang=\"ts\">\r\n \r\n+const router = useRouter()\r\n+  const goBack = () => {\r\n+    router.push({ path: '/settings/role-manager' })\r\n+  }\r\n+</script>\r\n+\r\n <style scoped></style>\r\n"
+                },
+                {
+                    "date": 1677558237498,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,17 +1,17 @@\n <template>\r\n   <div>\r\n     <n-space>\r\n       用户管理\r\n-      <n-button @click=\"() => router.push()\">详情</n-button>\r\n+      <n-button @click=\"toDetail\">详情</n-button>\r\n     </n-space>\r\n   </div>\r\n </template>\r\n \r\n <script setup lang=\"ts\">\r\n   const router = useRouter()\r\n-  const goBack = () => {\r\n-    router.push({ path: '/settings/role-manager' })\r\n+  const toDetail = () => {\r\n+    router.push({ path: '/settings/role-manager/detail' })\r\n   }\r\n </script>\r\n \r\n <style scoped></style>\r\n"
+                }
+            ],
+            "date": 1677060685687,
+            "name": "Commit-0",
+            "content": "<template>\r\n  <div>\r\n用户管理\r\n  </div>\r\n</template>\r\n\r\n<script setup lang=\"ts\">\r\n\r\n</script>\r\n\r\n<style scoped>\r\n\r\n</style>"
+        }
+    ]
+}

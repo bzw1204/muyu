@@ -1,0 +1,46 @@
+{
+    "sourceFile": "src/types/router.d.ts",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 7,
+            "patches": [
+                {
+                    "date": 1677138914470,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1677138928829,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n \r\n declare module 'vue-router' {\r\n   export declare type MenuType = 'menu' | 'link' | 'iframe'\r\n   export declare interface RouteMeta {\r\n-    roles?: string[] // Controls roles that have access to the page\r\n+    permission?: string[] // Controls roles that have access to the page\r\n     requiresAuth: boolean // Whether login is required to access the current page (every route must declare)\r\n     icon?: string // The icon show in the side menu\r\n     title?: string // The locale name show in side menu and breadcrumb\r\n     hideInMenu?: boolean // If true, it is not displayed in the side menu\r\n"
+                },
+                {
+                    "date": 1677138998704,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,17 +2,13 @@\n \r\n declare module 'vue-router' {\r\n   export declare type MenuType = 'menu' | 'link' | 'iframe'\r\n   export declare interface RouteMeta {\r\n-    permission?: string[] // Controls roles that have access to the page\r\n-    requiresAuth: boolean // Whether login is required to access the current page (every route must declare)\r\n+    title?: string // The locale name show in side menu and breadcrumb\r\n     icon?: string // The icon show in the side menu\r\n-    title?: string // The locale name show in side menu and breadcrumb\r\n-    hideInMenu?: boolean // If true, it is not displayed in the side menu\r\n     order?: number // Sort routing menu items. If set key, the higher the value, the more forward it is\r\n-    noAffix?: boolean // if set true, the tag will not affix in the tab-bar\r\n+    hidden?: boolean // If true, it is not displayed in the side menu\r\n+    permission?: string[] // Controls roles that have access to the page\r\n+    affix?: boolean // if set true, the tag will not affix in the tab-bar\r\n     ignoreCache?: boolean // if set true, the page will not be cached\r\n-    type?: MenuType // menu type, 'default' or 'link' or 'iframe'\r\n-    href?: string // if type is 'iframe', the href will be used as the iframe src,\r\n-    cache?: boolean // if set true, the route page will be to keep keep-live\r\n   }\r\n }\r\n"
+                },
+                {
+                    "date": 1677139008715,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,14 +1,13 @@\n import 'vue-router'\r\n \r\n declare module 'vue-router' {\r\n-  export declare type MenuType = 'menu' | 'link' | 'iframe'\r\n-  export declare interface RouteMeta {\r\n-    title?: string // The locale name show in side menu and breadcrumb\r\n-    icon?: string // The icon show in the side menu\r\n-    order?: number // Sort routing menu items. If set key, the higher the value, the more forward it is\r\n-    hidden?: boolean // If true, it is not displayed in the side menu\r\n-    permission?: string[] // Controls roles that have access to the page\r\n-    affix?: boolean // if set true, the tag will not affix in the tab-bar\r\n-    ignoreCache?: boolean // if set true, the page will not be cached\r\n-  }\r\n+\texport declare interface RouteMeta {\r\n+\t\ttitle?: string // The locale name show in side menu and breadcrumb\r\n+\t\ticon?: string // The icon show in the side menu\r\n+\t\torder?: number // Sort routing menu items. If set key, the higher the value, the more forward it is\r\n+\t\thidden?: boolean // If true, it is not displayed in the side menu\r\n+\t\tpermission?: string[] // Controls roles that have access to the page\r\n+\t\taffix?: boolean // if set true, the tag will not affix in the tab-bar\r\n+\t\tignoreCache?: boolean // if set true, the page will not be cached\r\n+\t}\r\n }\r\n"
+                },
+                {
+                    "date": 1677139051322,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n \r\n declare module 'vue-router' {\r\n \texport declare interface RouteMeta {\r\n \t\ttitle?: string // The locale name show in side menu and breadcrumb\r\n-\t\ticon?: string // The icon show in the side menu\r\n+\t\ticon?: string | component // The icon show in the side menu\r\n \t\torder?: number // Sort routing menu items. If set key, the higher the value, the more forward it is\r\n \t\thidden?: boolean // If true, it is not displayed in the side menu\r\n \t\tpermission?: string[] // Controls roles that have access to the page\r\n \t\taffix?: boolean // if set true, the tag will not affix in the tab-bar\r\n"
+                },
+                {
+                    "date": 1677139145397,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n import 'vue-router'\r\n \r\n declare module 'vue-router' {\r\n \texport declare interface RouteMeta {\r\n-\t\ttitle?: string // The locale name show in side menu and breadcrumb\r\n+\t\tname?: string // The locale name show in side menu and breadcrumb\r\n \t\ticon?: string | component // The icon show in the side menu\r\n \t\torder?: number // Sort routing menu items. If set key, the higher the value, the more forward it is\r\n \t\thidden?: boolean // If true, it is not displayed in the side menu\r\n \t\tpermission?: string[] // Controls roles that have access to the page\r\n"
+                },
+                {
+                    "date": 1677139402387,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n \r\n declare module 'vue-router' {\r\n \texport declare interface RouteMeta {\r\n \t\tname?: string // The locale name show in side menu and breadcrumb\r\n-\t\ticon?: string | component // The icon show in the side menu\r\n+\t\ticon?: string | Component // The icon show in the side menu\r\n \t\torder?: number // Sort routing menu items. If set key, the higher the value, the more forward it is\r\n \t\thidden?: boolean // If true, it is not displayed in the side menu\r\n \t\tpermission?: string[] // Controls roles that have access to the page\r\n \t\taffix?: boolean // if set true, the tag will not affix in the tab-bar\r\n"
+                },
+                {
+                    "date": 1677139441195,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n \r\n declare module 'vue-router' {\r\n \texport declare interface RouteMeta {\r\n \t\tname?: string // The locale name show in side menu and breadcrumb\r\n-\t\ticon?: string | Component // The icon show in the side menu\r\n+\t\ticon?: Component // The icon show in the side menu\r\n \t\torder?: number // Sort routing menu items. If set key, the higher the value, the more forward it is\r\n \t\thidden?: boolean // If true, it is not displayed in the side menu\r\n \t\tpermission?: string[] // Controls roles that have access to the page\r\n \t\taffix?: boolean // if set true, the tag will not affix in the tab-bar\r\n"
+                }
+            ],
+            "date": 1677138914470,
+            "name": "Commit-0",
+            "content": "import 'vue-router'\r\n\r\ndeclare module 'vue-router' {\r\n  export declare type MenuType = 'menu' | 'link' | 'iframe'\r\n  export declare interface RouteMeta {\r\n    roles?: string[] // Controls roles that have access to the page\r\n    requiresAuth: boolean // Whether login is required to access the current page (every route must declare)\r\n    icon?: string // The icon show in the side menu\r\n    title?: string // The locale name show in side menu and breadcrumb\r\n    hideInMenu?: boolean // If true, it is not displayed in the side menu\r\n    order?: number // Sort routing menu items. If set key, the higher the value, the more forward it is\r\n    noAffix?: boolean // if set true, the tag will not affix in the tab-bar\r\n    ignoreCache?: boolean // if set true, the page will not be cached\r\n    type?: MenuType // menu type, 'default' or 'link' or 'iframe'\r\n    href?: string // if type is 'iframe', the href will be used as the iframe src,\r\n    cache?: boolean // if set true, the route page will be to keep keep-live\r\n  }\r\n}\r\n"
+        }
+    ]
+}

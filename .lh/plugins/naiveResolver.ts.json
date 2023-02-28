@@ -1,0 +1,22 @@
+{
+    "sourceFile": "plugins/naiveResolver.ts",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1677121752270,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1677121782694,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n import Components from 'unplugin-vue-components/vite'\r\n \r\n export default function NaiveResolver() {\r\n \treturn Components({\r\n-\t\tdts: 'src/types/auto-import.d.ts',\r\n+\t\tdts: 'src/types/components.d.ts',\r\n \t\tdirs: ['src/components'],\r\n \t\tresolvers: [NaiveUiResolver()]\r\n \t})\r\n }\r\n"
+                }
+            ],
+            "date": 1677121752270,
+            "name": "Commit-0",
+            "content": "import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'\r\nimport Components from 'unplugin-vue-components/vite'\r\n\r\nexport default function NaiveResolver() {\r\n\treturn Components({\r\n\t\tdts: 'src/types/auto-import.d.ts',\r\n\t\tdirs: ['src/components'],\r\n\t\tresolvers: [NaiveUiResolver()]\r\n\t})\r\n}\r\n"
+        }
+    ]
+}

@@ -1,0 +1,94 @@
+{
+    "sourceFile": "src/App.vue",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 19,
+            "patches": [
+                {
+                    "date": 1677056176376,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1677058146799,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,28 +1,22 @@\n-<script setup lang=\"ts\">\n-</script>\n+<script setup lang=\"ts\"></script>\n \n <template>\n-  <div>\n-    <a href=\"https://vitejs.dev\" target=\"_blank\">\n-      <img src=\"/vite.svg\" class=\"logo\" alt=\"Vite logo\" />\n-    </a>\n-    <a href=\"https://vuejs.org/\" target=\"_blank\">\n-      <img src=\"./assets/vue.svg\" class=\"logo vue\" alt=\"Vue logo\" />\n-    </a>\n-  </div>\n+\t<div>\n+\t\t<RouterView />\n+\t</div>\n </template>\n \n <style scoped>\n-.logo {\n-  height: 6em;\n-  padding: 1.5em;\n-  will-change: filter;\n-  transition: filter 300ms;\n-}\n-.logo:hover {\n-  filter: drop-shadow(0 0 2em #646cffaa);\n-}\n-.logo.vue:hover {\n-  filter: drop-shadow(0 0 2em #42b883aa);\n-}\n+\t.logo {\n+\t\theight: 6em;\n+\t\tpadding: 1.5em;\n+\t\twill-change: filter;\n+\t\ttransition: filter 300ms;\n+\t}\n+\t.logo:hover {\n+\t\tfilter: drop-shadow(0 0 2em #646cffaa);\n+\t}\n+\t.logo.vue:hover {\n+\t\tfilter: drop-shadow(0 0 2em #42b883aa);\n+\t}\n </style>\n"
+                },
+                {
+                    "date": 1677060508540,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,12 +1,14 @@\n-<script setup lang=\"ts\"></script>\n-\n <template>\n \t<div>\n \t\t<RouterView />\n \t</div>\n </template>\n+<script setup lang=\"ts\">\n+\timport { useRouter } from 'vue-router'\n \n+\tconst router = useRouter()\n+</script>\n <style scoped>\n \t.logo {\n \t\theight: 6em;\n \t\tpadding: 1.5em;\n"
+                },
+                {
+                    "date": 1677060514747,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,8 +6,9 @@\n <script setup lang=\"ts\">\n \timport { useRouter } from 'vue-router'\n \n \tconst router = useRouter()\n+\tconsole.log('router.getRoutes()', router.getRoutes())\n </script>\n <style scoped>\n \t.logo {\n \t\theight: 6em;\n"
+                },
+                {
+                    "date": 1677060602097,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,13 +1,18 @@\n <template>\n \t<div>\n+\t\t<ul>\n+\t\t\t<li v-for=\"item in router.getR\"></li>\n+\t\t</ul>\n+\n \t\t<RouterView />\n \t</div>\n </template>\n <script setup lang=\"ts\">\n \timport { useRouter } from 'vue-router'\n \n \tconst router = useRouter()\n+\tconst routers = router.getRoutes()\n \tconsole.log('router.getRoutes()', router.getRoutes())\n </script>\n <style scoped>\n \t.logo {\n"
+                },
+                {
+                    "date": 1677060636275,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n <template>\n \t<div>\n \t\t<ul>\n-\t\t\t<li v-for=\"item in router.getR\"></li>\n+\t\t\t<li v-for=\"item in routers\" :key=\"item.path\">{{ item.meta.name }}</li>\n \t\t</ul>\n \n \t\t<RouterView />\n \t</div>\n"
+                },
+                {
+                    "date": 1677060664687,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,10 @@\n <template>\n \t<div>\n \t\t<ul>\n-\t\t\t<li v-for=\"item in routers\" :key=\"item.path\">{{ item.meta.name }}</li>\n+\t\t\t<li v-for=\"item in routers\" :key=\"item.path\">\n+\t\t\t\t<router-link to=\"item.path\">{{ item.meta.name }}</router-link>\n+\t\t\t</li>\n \t\t</ul>\n \n \t\t<RouterView />\n \t</div>\n"
+                },
+                {
+                    "date": 1677060717259,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n <template>\n \t<div>\n \t\t<ul>\n \t\t\t<li v-for=\"item in routers\" :key=\"item.path\">\n-\t\t\t\t<router-link to=\"item.path\">{{ item.meta.name }}</router-link>\n+\t\t\t\t<router-link :to=\"item.path\">{{ item.meta.name }}</router-link>\n \t\t\t</li>\n \t\t</ul>\n \n \t\t<RouterView />\n"
+                },
+                {
+                    "date": 1677062247758,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n <script setup lang=\"ts\">\n \timport { useRouter } from 'vue-router'\n \n \tconst router = useRouter()\n-\tconst routers = router.getRoutes()\n+\tconst routers = router.getRoutes().find((x) => x.path === '/')?.children\n \tconsole.log('router.getRoutes()', router.getRoutes())\n </script>\n <style scoped>\n \t.logo {\n"
+                },
+                {
+                    "date": 1677062284058,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n <template>\n \t<div>\n \t\t<ul>\n \t\t\t<li v-for=\"item in routers\" :key=\"item.path\">\n-\t\t\t\t<router-link :to=\"item.path\">{{ item.meta.name }}</router-link>\n+\t\t\t\t<router-link :to=\"item.path\">{{ item.meta?.name }}</router-link>\n \t\t\t</li>\n \t\t</ul>\n \n \t\t<RouterView />\n@@ -12,9 +12,9 @@\n <script setup lang=\"ts\">\n \timport { useRouter } from 'vue-router'\n \n \tconst router = useRouter()\n-\tconst routers = router.getRoutes().find((x) => x.path === '/')?.children\n+\tconst routers = router.getRoutes().find((x) => x.path === '/')?.children ?? []\n \tconsole.log('router.getRoutes()', router.getRoutes())\n </script>\n <style scoped>\n \t.logo {\n"
+                },
+                {
+                    "date": 1677062412548,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,11 @@\n <template>\n \t<div>\n \t\t<ul>\n \t\t\t<li v-for=\"item in routers\" :key=\"item.path\">\n+\t\t\t\t<ul v-if=\"item.children && item.children.length>0\">\n+\t\t\t\t\t<li v-for=\"child in item.children\" :key=\"child.path\">{{ child.meta?.name }}</li>\n+\t\t\t\t</ul>\n \t\t\t\t<router-link :to=\"item.path\">{{ item.meta?.name }}</router-link>\n \t\t\t</li>\n \t\t</ul>\n \n"
+                },
+                {
+                    "date": 1677062423350,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n \t\t\t<li v-for=\"item in routers\" :key=\"item.path\">\n \t\t\t\t<ul v-if=\"item.children && item.children.length>0\">\n \t\t\t\t\t<li v-for=\"child in item.children\" :key=\"child.path\">{{ child.meta?.name }}</li>\n \t\t\t\t</ul>\n-\t\t\t\t<router-link :to=\"item.path\">{{ item.meta?.name }}</router-link>\n+\t\t\t\t<router-link v-else :to=\"item.path\">{{ item.meta?.name }}</router-link>\n \t\t\t</li>\n \t\t</ul>\n \n \t\t<RouterView />\n"
+                },
+                {
+                    "date": 1677062558758,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,11 @@\n \t<div>\n \t\t<ul>\n \t\t\t<li v-for=\"item in routers\" :key=\"item.path\">\n \t\t\t\t<ul v-if=\"item.children && item.children.length>0\">\n-\t\t\t\t\t<li v-for=\"child in item.children\" :key=\"child.path\">{{ child.meta?.name }}</li>\n+\t\t\t\t\t<li v-for=\"child in item.children\" :key=\"child.path\">\n+\t\t\t\t\t<router-link :to=\"child.path\" >{{ child.meta?.name }}</router-link>\n+\t\t\t\t\t</li>\n \t\t\t\t</ul>\n \t\t\t\t<router-link v-else :to=\"item.path\">{{ item.meta?.name }}</router-link>\n \t\t\t</li>\n \t\t</ul>\n"
+                },
+                {
+                    "date": 1677114635826,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,8 +6,9 @@\n \t\t\t\t\t<li v-for=\"child in item.children\" :key=\"child.path\">\n \t\t\t\t\t<router-link :to=\"child.path\" >{{ child.meta?.name }}</router-link>\n \t\t\t\t\t</li>\n \t\t\t\t</ul>\n+\n \t\t\t\t<router-link v-else :to=\"item.path\">{{ item.meta?.name }}</router-link>\n \t\t\t</li>\n \t\t</ul>\n \n"
+                },
+                {
+                    "date": 1677121304774,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,38 +1,13 @@\n <template>\n-\t<div>\n-\t\t<ul>\n-\t\t\t<li v-for=\"item in routers\" :key=\"item.path\">\n-\t\t\t\t<ul v-if=\"item.children && item.children.length>0\">\n-\t\t\t\t\t<li v-for=\"child in item.children\" :key=\"child.path\">\n-\t\t\t\t\t<router-link :to=\"child.path\" >{{ child.meta?.name }}</router-link>\n-\t\t\t\t\t</li>\n-\t\t\t\t</ul>\n-\n-\t\t\t\t<router-link v-else :to=\"item.path\">{{ item.meta?.name }}</router-link>\n-\t\t\t</li>\n-\t\t</ul>\n-\n+\t<n-config-provider :theme=\"theme\">\n \t\t<RouterView />\n-\t</div>\n+\t</n-config-provider>\n </template>\n+\n <script setup lang=\"ts\">\n-\timport { useRouter } from 'vue-router'\n+\timport { darkTheme } from 'naive-ui'\n+\timport type { GlobalTheme } from 'naive-ui'\n+\tconst theme = ref<GlobalTheme | null>(null)\n+</script>\n \n-\tconst router = useRouter()\n-\tconst routers = router.getRoutes().find((x) => x.path === '/')?.children ?? []\n-\tconsole.log('router.getRoutes()', router.getRoutes())\n-</script>\n-<style scoped>\n-\t.logo {\n-\t\theight: 6em;\n-\t\tpadding: 1.5em;\n-\t\twill-change: filter;\n-\t\ttransition: filter 300ms;\n-\t}\n-\t.logo:hover {\n-\t\tfilter: drop-shadow(0 0 2em #646cffaa);\n-\t}\n-\t.logo.vue:hover {\n-\t\tfilter: drop-shadow(0 0 2em #42b883aa);\n-\t}\n-</style>\n+<style scoped></style>\n"
+                },
+                {
+                    "date": 1677121311635,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,13 +1,10 @@\n <template>\n-\t<n-config-provider :theme=\"theme\">\n+\t<n-config-provider>\n \t\t<RouterView />\n \t</n-config-provider>\n </template>\n \n <script setup lang=\"ts\">\n-\timport { darkTheme } from 'naive-ui'\n-\timport type { GlobalTheme } from 'naive-ui'\n-\tconst theme = ref<GlobalTheme | null>(null)\n </script>\n \n <style scoped></style>\n"
+                },
+                {
+                    "date": 1677205979176,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,9 @@\n <template>\n-\t<n-config-provider>\n-\t\t<RouterView />\n-\t</n-config-provider>\n+  <n-config-provider>\n+    <RouterView />\n+  </n-config-provider>\n </template>\n \n-<script setup lang=\"ts\">\n-</script>\n+<script setup lang=\"ts\"></script>\n \n <style scoped></style>\n"
+                },
+                {
+                    "date": 1677206687202,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,12 @@\n <template>\n-  <n-config-provider>\n+  <n-config-provider :theme=\"theme\">\n     <RouterView />\n   </n-config-provider>\n </template>\n \n-<script setup lang=\"ts\"></script>\n+<script setup lang=\"ts\">\n+import { darkTheme } from 'naive-ui';\n+const theme = ref(null)\n+</script>\n \n <style scoped></style>\n"
+                },
+                {
+                    "date": 1677206716049,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n   </n-config-provider>\n </template>\n \n <script setup lang=\"ts\">\n-  import { darkTheme } from 'naive-ui'\n+  import { darkTheme,lightTheme } from 'naive-ui'\n   const theme = ref(null)\n </script>\n \n <style scoped></style>\n"
+                },
+                {
+                    "date": 1677206974252,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,12 +1,11 @@\n <template>\n-  <n-config-provider :theme=\"theme\">\n+  <n-config-provider :theme=\"getTheme\">\n     <RouterView />\n   </n-config-provider>\n </template>\n \n <script setup lang=\"ts\">\n-  import { darkTheme, lightTheme } from 'naive-ui'\n-  const theme = ref(null)\n+  const { getTheme } = storeToRefs(useSettingStore())\n </script>\n \n <style scoped></style>\n"
+                }
+            ],
+            "date": 1677056176376,
+            "name": "Commit-0",
+            "content": "<script setup lang=\"ts\">\n</script>\n\n<template>\n  <div>\n    <a href=\"https://vitejs.dev\" target=\"_blank\">\n      <img src=\"/vite.svg\" class=\"logo\" alt=\"Vite logo\" />\n    </a>\n    <a href=\"https://vuejs.org/\" target=\"_blank\">\n      <img src=\"./assets/vue.svg\" class=\"logo vue\" alt=\"Vue logo\" />\n    </a>\n  </div>\n</template>\n\n<style scoped>\n.logo {\n  height: 6em;\n  padding: 1.5em;\n  will-change: filter;\n  transition: filter 300ms;\n}\n.logo:hover {\n  filter: drop-shadow(0 0 2em #646cffaa);\n}\n.logo.vue:hover {\n  filter: drop-shadow(0 0 2em #42b883aa);\n}\n</style>\n"
+        }
+    ]
+}

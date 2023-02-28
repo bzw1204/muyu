@@ -1,0 +1,70 @@
+{
+    "sourceFile": "src/store/modules/setting/index.ts",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 13,
+            "patches": [
+                {
+                    "date": 1677124977295,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1677125057838,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,1 +1,5 @@\n-export default defineStore('setting', {})\r\n+export default defineStore('setting', {\r\n+  state:()=>{\r\n+    collapsed: false\r\n+  }\r\n+})\r\n"
+                },
+                {
+                    "date": 1677125082805,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,7 @@\n+import { ISetting } from './types'\r\n+\r\n export default defineStore('setting', {\r\n-  state:()=>{\r\n-    collapsed: false\r\n-  }\r\n+\tstate: (): ISetting => ({\r\n+\t\tcollapsed: false\r\n+\t})\r\n })\r\n"
+                },
+                {
+                    "date": 1677126531268,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,6 +2,11 @@\n \r\n export default defineStore('setting', {\r\n \tstate: (): ISetting => ({\r\n \t\tcollapsed: false\r\n-\t})\r\n+\t}),\r\n+\tactions: {\r\n+\t\tsetCollapsed(collapsed: boolean) {\r\n+\t\t\tthis.collapsed = collapsed\r\n+\t\t}\r\n+\t}\r\n })\r\n"
+                },
+                {
+                    "date": 1677127237488,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,10 @@\n import { ISetting } from './types'\r\n \r\n export default defineStore('setting', {\r\n \tstate: (): ISetting => ({\r\n-\t\tcollapsed: false\r\n+\t\tcollapsed: false,\r\n+\t\tcollapsedWidth: 48\r\n \t}),\r\n \tactions: {\r\n \t\tsetCollapsed(collapsed: boolean) {\r\n \t\t\tthis.collapsed = collapsed\r\n"
+                },
+                {
+                    "date": 1677127243391,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,10 +4,6 @@\n \tstate: (): ISetting => ({\r\n \t\tcollapsed: false,\r\n \t\tcollapsedWidth: 48\r\n \t}),\r\n-\tactions: {\r\n-\t\tsetCollapsed(collapsed: boolean) {\r\n-\t\t\tthis.collapsed = collapsed\r\n-\t\t}\r\n-\t}\r\n+\r\n })\r\n"
+                },
+                {
+                    "date": 1677206495866,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,8 +2,8 @@\n \r\n export default defineStore('setting', {\r\n \tstate: (): ISetting => ({\r\n \t\tcollapsed: false,\r\n-\t\tcollapsedWidth: 48\r\n-\t}),\r\n-\r\n+\t\tcollapsedWidth: 48,\r\n+\t\ttheme: 'light'\r\n+\t})\r\n })\r\n"
+                },
+                {
+                    "date": 1677206537659,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,6 +4,11 @@\n \tstate: (): ISetting => ({\r\n \t\tcollapsed: false,\r\n \t\tcollapsedWidth: 48,\r\n \t\ttheme: 'light'\r\n-\t})\r\n+\t}),\r\n+\tactions:{\r\n+\t\ttoggleTheme(){\r\n+\t\t\tthis.theme = this.theme === 'light'? 'dark' : 'light'\r\n+\t\t}\r\n+\t}\r\n })\r\n"
+                },
+                {
+                    "date": 1677206825766,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,12 +1,18 @@\n+import { lightTheme } from 'naive-ui'\r\n import { ISetting } from './types'\r\n \r\n export default defineStore('setting', {\r\n \tstate: (): ISetting => ({\r\n \t\tcollapsed: false,\r\n \t\tcollapsedWidth: 48,\r\n-\t\ttheme: 'light'\r\n+\t\ttheme: lightTheme\r\n \t}),\r\n+\tgetters:{\r\n+\t\tgetTheme(){\r\n+\t\t\treturn\r\n+\t\t}\r\n+\t},\r\n \tactions:{\r\n \t\ttoggleTheme(){\r\n \t\t\tthis.theme = this.theme === 'light'? 'dark' : 'light'\r\n \t\t}\r\n"
+                },
+                {
+                    "date": 1677206880477,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,16 +1,16 @@\n-import { lightTheme } from 'naive-ui'\r\n+import { darkTheme, lightTheme } from 'naive-ui'\r\n import { ISetting } from './types'\r\n \r\n export default defineStore('setting', {\r\n \tstate: (): ISetting => ({\r\n \t\tcollapsed: false,\r\n \t\tcollapsedWidth: 48,\r\n-\t\ttheme: lightTheme\r\n+\t\ttheme: 'light'\r\n \t}),\r\n \tgetters:{\r\n-\t\tgetTheme(){\r\n-\t\t\treturn\r\n+\t\tgetTheme():{\r\n+\t\t\treturn this.theme === 'light'? lightTheme : darkTheme\r\n \t\t}\r\n \t},\r\n \tactions:{\r\n \t\ttoggleTheme(){\r\n"
+                },
+                {
+                    "date": 1677206892530,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,6 @@\n import { darkTheme, lightTheme } from 'naive-ui'\r\n+import { BuiltInGlobalTheme } from 'naive-ui/es/themes/interface'\r\n import { ISetting } from './types'\r\n \r\n export default defineStore('setting', {\r\n \tstate: (): ISetting => ({\r\n@@ -7,9 +8,9 @@\n \t\tcollapsedWidth: 48,\r\n \t\ttheme: 'light'\r\n \t}),\r\n \tgetters:{\r\n-\t\tgetTheme():{\r\n+\t\tgetTheme():BuiltInGlobalTheme{\r\n \t\t\treturn this.theme === 'light'? lightTheme : darkTheme\r\n \t\t}\r\n \t},\r\n \tactions:{\r\n"
+                },
+                {
+                    "date": 1677206901970,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,20 +2,20 @@\n import { BuiltInGlobalTheme } from 'naive-ui/es/themes/interface'\r\n import { ISetting } from './types'\r\n \r\n export default defineStore('setting', {\r\n-\tstate: (): ISetting => ({\r\n-\t\tcollapsed: false,\r\n-\t\tcollapsedWidth: 48,\r\n-\t\ttheme: 'light'\r\n-\t}),\r\n-\tgetters:{\r\n-\t\tgetTheme():BuiltInGlobalTheme{\r\n-\t\t\treturn this.theme === 'light'? lightTheme : darkTheme\r\n-\t\t}\r\n-\t},\r\n-\tactions:{\r\n-\t\ttoggleTheme(){\r\n-\t\t\tthis.theme = this.theme === 'light'? 'dark' : 'light'\r\n-\t\t}\r\n-\t}\r\n+  state: (): ISetting => ({\r\n+    collapsed: false,\r\n+    collapsedWidth: 48,\r\n+    theme: 'light'\r\n+  }),\r\n+  getters: {\r\n+    getTheme(): BuiltInGlobalTheme {\r\n+      return this.theme === 'light' ? lightTheme : darkTheme\r\n+    }\r\n+  },\r\n+  actions: {\r\n+    toggleTheme() {\r\n+      this.theme = this.theme === 'light' ? 'dark' : 'light'\r\n+    }\r\n+  }\r\n })\r\n"
+                },
+                {
+                    "date": 1677467336708,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,7 +15,10 @@\n   },\r\n   actions: {\r\n     toggleTheme() {\r\n       this.theme = this.theme === 'light' ? 'dark' : 'light'\r\n+    },\r\n+    toggleCollapsed() {\r\n+      this.collapsed = !this.collapsed\r\n     }\r\n   }\r\n })\r\n"
+                },
+                {
+                    "date": 1677468371594,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,8 +7,9 @@\n     collapsed: false,\r\n     collapsedWidth: 48,\r\n     theme: 'light'\r\n   }),\r\n+  persist: true,\r\n   getters: {\r\n     getTheme(): BuiltInGlobalTheme {\r\n       return this.theme === 'light' ? lightTheme : darkTheme\r\n     }\r\n"
+                }
+            ],
+            "date": 1677124977295,
+            "name": "Commit-0",
+            "content": "export default defineStore('setting', {})\r\n"
+        }
+    ]
+}

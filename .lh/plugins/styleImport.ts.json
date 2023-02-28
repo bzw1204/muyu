@@ -1,0 +1,26 @@
+{
+    "sourceFile": "plugins/styleImport.ts",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1677056792080,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1677056950330,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,8 @@\n  * 按需引入组件库样式\r\n  * https://github.com/anncwb/vite-plugin-style-import\r\n  */\r\n import { createStyleImportPlugin } from 'vite-plugin-style-import'\r\n-\r\n export default function configStyleImportPlugin() {\r\n   const styleImportPlugin = createStyleImportPlugin({\r\n     libs: [\r\n       {\r\n"
+                },
+                {
+                    "date": 1677056977750,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,8 +3,9 @@\n  * 按需引入组件库样式\r\n  * https://github.com/anncwb/vite-plugin-style-import\r\n  */\r\n import { createStyleImportPlugin } from 'vite-plugin-style-import'\r\n+\r\n export default function configStyleImportPlugin() {\r\n   const styleImportPlugin = createStyleImportPlugin({\r\n     libs: [\r\n       {\r\n"
+                }
+            ],
+            "date": 1677056792080,
+            "name": "Commit-0",
+            "content": "/**\r\n * Introduces component library styles on demand.\r\n * 按需引入组件库样式\r\n * https://github.com/anncwb/vite-plugin-style-import\r\n */\r\nimport { createStyleImportPlugin } from 'vite-plugin-style-import'\r\n\r\nexport default function configStyleImportPlugin() {\r\n  const styleImportPlugin = createStyleImportPlugin({\r\n    libs: [\r\n      {\r\n        libraryName: '@arco-design/web-vue',\r\n        esModule: true,\r\n        resolveStyle: (name) => {\r\n          // The use of this part of the component must depend on the parent, so it can be ignored directly.\r\n          // 这部分组件的使用必须依赖父级，所以直接忽略即可。\r\n          const ignoreList: string[] = [\r\n            'config-provider',\r\n            'anchor-link',\r\n            'sub-menu',\r\n            'menu-item',\r\n            'menu-item-group',\r\n            'breadcrumb-item',\r\n            'form-item',\r\n            'step',\r\n            'card-grid',\r\n            'card-meta',\r\n            'collapse-panel',\r\n            'descriptions-item',\r\n            'list-item',\r\n            'list-item-meta',\r\n            'table-column',\r\n            'table-column-group',\r\n            'tab-pane',\r\n            'tab-content',\r\n            'timeline-item',\r\n            'tree-node',\r\n            'skeleton-line',\r\n            'skeleton-shape',\r\n            'grid-item',\r\n            'carousel-item',\r\n            'doption',\r\n            'option'\r\n          ]\r\n          // List of components that need to map imported styles\r\n          // 需要映射引入样式的组件列表\r\n          const replaceList: Record<string, string> = {\r\n            'typography-text': 'typography',\r\n            'typography-title': 'typography',\r\n            'typography-paragraph': 'typography',\r\n            'typography-link': 'typography',\r\n            'dropdown-button': 'dropdown',\r\n            'input-password': 'input',\r\n            'input-search': 'input',\r\n            'input-group': 'input',\r\n            'radio-group': 'radio',\r\n            'checkbox-group': 'checkbox',\r\n            'layout-sider': 'layout',\r\n            'layout-content': 'layout',\r\n            'layout-footer': 'layout',\r\n            'layout-header': 'layout',\r\n            'month-picker': 'date-picker',\r\n            'range-picker': 'date-picker',\r\n            'row': 'grid', // 'grid/row.less'\r\n            'col': 'grid', // 'grid/col.less'\r\n            'avatar-group': 'avatar'\r\n          }\r\n          if (ignoreList.includes(name)) return ''\r\n          const componentName = Object.prototype.hasOwnProperty.call(replaceList, name) ? replaceList[name] : name\r\n          return `@arco-design/web-vue/es/${componentName}/style/index.js`\r\n        }\r\n      }\r\n    ]\r\n  })\r\n  return styleImportPlugin\r\n}\r\n"
+        }
+    ]
+}

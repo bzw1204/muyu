@@ -1,0 +1,86 @@
+{
+    "sourceFile": "src/layout/components/index.ts",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 17,
+            "patches": [
+                {
+                    "date": 1677122156592,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1677122163722,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,1 +1,1 @@\n-const componetModule = import.meta.glob('./**/*.vue')\n\\ No newline at end of file\n+const componentModule = import.meta.glob('./**/*.vue')\r\n"
+                },
+                {
+                    "date": 1677122173531,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,1 +1,3 @@\n const componentModule = import.meta.glob('./**/*.vue')\r\n+\r\n+console.log('componentModule', componentModule)\r\n"
+                },
+                {
+                    "date": 1677122184589,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,3 +1,4 @@\n const componentModule = import.meta.glob('./**/*.vue')\r\n \r\n console.log('componentModule', componentModule)\r\n+export {}\r\n"
+                },
+                {
+                    "date": 1677122317147,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,4 @@\n const componentModule = import.meta.glob('./**/*.vue')\r\n \r\n-console.log('componentModule', componentModule)\r\n+console.log('componentModule', componentModule[0])\r\n export {}\r\n"
+                },
+                {
+                    "date": 1677122353347,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,6 @@\n const componentModule = import.meta.glob('./**/*.vue')\r\n \r\n-console.log('componentModule', componentModule[0])\r\n+Object.entries(componentModule).forEach(([a, b]) => {\r\n+\tconsole.log('a', a, b)\r\n+})\r\n export {}\r\n"
+                },
+                {
+                    "date": 1677122363486,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-const componentModule = import.meta.glob('./**/*.vue')\r\n+const componentModule = import.meta.glob('./**/*.vue', { eager: true })\r\n \r\n Object.entries(componentModule).forEach(([a, b]) => {\r\n \tconsole.log('a', a, b)\r\n })\r\n"
+                },
+                {
+                    "date": 1677122546892,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,7 @@\n+import Menu from './menus/index.vue'\r\n const componentModule = import.meta.glob('./**/*.vue', { eager: true })\r\n-\r\n+console.log(Menu.name)\r\n Object.entries(componentModule).forEach(([a, b]) => {\r\n \tconsole.log('a', a, b)\r\n })\r\n export {}\r\n"
+                },
+                {
+                    "date": 1677122584114,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n import Menu from './menus/index.vue'\r\n const componentModule = import.meta.glob('./**/*.vue', { eager: true })\r\n-console.log(Menu.name)\r\n+console.log('组件名称', Menu.name)\r\n Object.entries(componentModule).forEach(([a, b]) => {\r\n \tconsole.log('a', a, b)\r\n })\r\n export {}\r\n"
+                },
+                {
+                    "date": 1677122631998,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,9 @@\n import Menu from './menus/index.vue'\r\n const componentModule = import.meta.glob('./**/*.vue', { eager: true })\r\n-console.log('组件名称', Menu.name)\r\n+onMounted(() => {\r\n+  console.log('组件名称', Menu.name)\r\n+})\r\n Object.entries(componentModule).forEach(([a, b]) => {\r\n \tconsole.log('a', a, b)\r\n })\r\n export {}\r\n"
+                },
+                {
+                    "date": 1677122637397,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,5 @@\n+import { onMounted } from 'vue'\r\n import Menu from './menus/index.vue'\r\n const componentModule = import.meta.glob('./**/*.vue', { eager: true })\r\n onMounted(() => {\r\n   console.log('组件名称', Menu.name)\r\n"
+                },
+                {
+                    "date": 1677122648695,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,8 @@\n import { onMounted } from 'vue'\r\n import Menu from './menus/index.vue'\r\n const componentModule = import.meta.glob('./**/*.vue', { eager: true })\r\n-onMounted(() => {\r\n-  console.log('组件名称', Menu.name)\r\n-})\r\n+\r\n Object.entries(componentModule).forEach(([a, b]) => {\r\n \tconsole.log('a', a, b)\r\n })\r\n export {}\r\n"
+                },
+                {
+                    "date": 1677123180152,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,10 @@\n-import { onMounted } from 'vue'\r\n+import { App, onMounted } from 'vue'\r\n import Menu from './menus/index.vue'\r\n-const componentModule = import.meta.glob('./**/*.vue', { eager: true })\r\n \r\n-Object.entries(componentModule).forEach(([a, b]) => {\r\n-\tconsole.log('a', a, b)\r\n-})\r\n-export {}\r\n+export default function (app: App) {\r\n+\tconst componentModule = import.meta.glob('./**/*.vue', { eager: true, import: 'default' })\r\n+\tObject.entries(componentModule).forEach(([a, b]) => {\r\n+\t\tconsole.log('a', a, b)\r\n+\t\tapp.component()\r\n+\t})\r\n+}\r\n"
+                },
+                {
+                    "date": 1677123189570,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,7 +4,7 @@\n export default function (app: App) {\r\n \tconst componentModule = import.meta.glob('./**/*.vue', { eager: true, import: 'default' })\r\n \tObject.entries(componentModule).forEach(([a, b]) => {\r\n \t\tconsole.log('a', a, b)\r\n-\t\tapp.component()\r\n+\t\t// app.component()\r\n \t})\r\n }\r\n"
+                },
+                {
+                    "date": 1677123194964,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,5 @@\n import { App, onMounted } from 'vue'\r\n-import Menu from './menus/index.vue'\r\n \r\n export default function (app: App) {\r\n \tconst componentModule = import.meta.glob('./**/*.vue', { eager: true, import: 'default' })\r\n \tObject.entries(componentModule).forEach(([a, b]) => {\r\n"
+                },
+                {
+                    "date": 1677123321930,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n-import { App, onMounted } from 'vue'\r\n+import { App } from 'vue'\r\n \r\n export default function (app: App) {\r\n-\tconst componentModule = import.meta.glob('./**/*.vue', { eager: true, import: 'default' })\r\n+\tconst componentModule = import.meta.glob('./**/*.vue')\r\n \tObject.entries(componentModule).forEach(([a, b]) => {\r\n \t\tconsole.log('a', a, b)\r\n \t\t// app.component()\r\n \t})\r\n"
+                },
+                {
+                    "date": 1677123392856,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,1 @@\n-import { App } from 'vue'\r\n \r\n-export default function (app: App) {\r\n-\tconst componentModule = import.meta.glob('./**/*.vue')\r\n-\tObject.entries(componentModule).forEach(([a, b]) => {\r\n-\t\tconsole.log('a', a, b)\r\n-\t\t// app.component()\r\n-\t})\r\n-}\r\n"
+                },
+                {
+                    "date": 1677123437033,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,1 +1,3 @@\n-\r\n+import MuMenu from './menus/index.vue'\r\n+import MuHeader from './header/index.vue'\r\n+export { MuMenu, MuHeader }\r\n"
+                }
+            ],
+            "date": 1677122156592,
+            "name": "Commit-0",
+            "content": "const componetModule = import.meta.glob('./**/*.vue')"
+        }
+    ]
+}

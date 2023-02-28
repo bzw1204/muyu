@@ -1,0 +1,34 @@
+{
+    "sourceFile": "src/store/index.ts",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 4,
+            "patches": [
+                {
+                    "date": 1677124808553,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1677125156937,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n import { createPinia } from 'pinia'\r\n import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'\r\n \r\n-\r\n const pinia = createPinia()\r\n pinia.use(piniaPluginPersistedstate)\r\n+import.meta.glob('./modules/**/index.ts')\r\n \r\n-export {  }\r\n+export {}\r\n export default pinia\r\n"
+                },
+                {
+                    "date": 1677125171360,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,8 +2,9 @@\n import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'\r\n \r\n const pinia = createPinia()\r\n pinia.use(piniaPluginPersistedstate)\r\n-import.meta.glob('./modules/**/index.ts')\r\n+const aa = import.meta.glob('./modules/**/index.ts')\r\n+console.log('aa', aa)\r\n \r\n export {}\r\n export default pinia\r\n"
+                },
+                {
+                    "date": 1677125710633,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,9 @@\n import { createPinia } from 'pinia'\r\n import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'\r\n+import useSettingStore from './modules/setting'\r\n \r\n const pinia = createPinia()\r\n pinia.use(piniaPluginPersistedstate)\r\n-const aa = import.meta.glob('./modules/**/index.ts')\r\n-console.log('aa', aa)\r\n+export default pinia\r\n \r\n-export {}\r\n-export default pinia\r\n+export { useSettingStore }\r\n"
+                },
+                {
+                    "date": 1677125965247,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,10 @@\n import { createPinia } from 'pinia'\r\n import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'\r\n import useSettingStore from './modules/setting'\r\n+import useUserStore from './modules/user'\r\n \r\n const pinia = createPinia()\r\n pinia.use(piniaPluginPersistedstate)\r\n export default pinia\r\n \r\n-export { useSettingStore }\r\n+export { useSettingStore, useUserStore }\r\n"
+                }
+            ],
+            "date": 1677124808553,
+            "name": "Commit-0",
+            "content": "import { createPinia } from 'pinia'\r\nimport piniaPluginPersistedstate from 'pinia-plugin-persistedstate'\r\n\r\n\r\nconst pinia = createPinia()\r\npinia.use(piniaPluginPersistedstate)\r\n\r\nexport {  }\r\nexport default pinia\r\n"
+        }
+    ]
+}

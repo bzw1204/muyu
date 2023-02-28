@@ -1,0 +1,30 @@
+{
+    "sourceFile": "src/views/dashboard/page.ts",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 3,
+            "patches": [
+                {
+                    "date": 1677060773418,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1677138633658,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,5 @@\n+import { HomeOutline } from '@vicons/ionicons5'\r\n export default {\r\n \tname: '控制台',\r\n \ticon: 'home'\r\n }\r\n"
+                },
+                {
+                    "date": 1677492747685,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,6 @@\n import { HomeOutline } from '@vicons/ionicons5'\r\n export default {\r\n \tname: '控制台',\r\n-\ticon: HomeOutline\r\n+\ticon: HomeOutline,\r\n+\tignore\r\n }\r\n"
+                },
+                {
+                    "date": 1677492759683,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n import { HomeOutline } from '@vicons/ionicons5'\r\n export default {\r\n   name: '控制台',\r\n   icon: HomeOutline,\r\n-  ignore\r\n+  ignoreCache: true\r\n }\r\n"
+                }
+            ],
+            "date": 1677060773418,
+            "name": "Commit-0",
+            "content": "export default {\r\n\tname: '控制台',\r\n\ticon: 'home'\r\n}\r\n"
+        }
+    ]
+}

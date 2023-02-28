@@ -1,0 +1,22 @@
+{
+    "sourceFile": "package.json",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1677205861932,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1677205878147,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -37,15 +37,15 @@\n     \"windicss\": \"^3.5.6\"\n   },\n   \"prettier\": {\n     \"tabWidth\": 2,\n-    \"semi\": false, // 不使用分号\n+    \"semi\": false,\n     \"printWidth\": 160,\n-    \"singleQuote\": true, // 使用单引号\n+    \"singleQuote\": true,\n     \"quoteProps\": \"consistent\",\n-    \"bracketSpacing\": true, // 在对象,数组括号与文字之间加空格\n-    \"htmlWhitespaceSensitivity\": \"ignore\", // 对html的空格不敏感\n-    \"endOfLine\": \"auto\", // 行结尾统一样式，保持现有的行尾\n-    \"trailingComma\": \"none\", // 对象，数组等末尾不加逗号\n-    \"vueIndentScriptAndStyle\": true,\n+    \"bracketSpacing\": true,\n+    \"htmlWhitespaceSensitivity\": \"ignore\",\n+    \"endOfLine\": \"auto\",\n+    \"trailingComma\": \"none\",\n+    \"vueIndentScriptAndStyle\": true\n   }\n }\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1677205861932,
+            "name": "Commit-0",
+            "content": "{\n  \"name\": \"muyu-template\",\n  \"private\": true,\n  \"version\": \"0.0.0\",\n  \"type\": \"module\",\n  \"scripts\": {\n    \"dev\": \"vite\",\n    \"build\": \"vue-tsc && vite build\",\n    \"preview\": \"vite preview\"\n  },\n  \"dependencies\": {\n    \"pinia\": \"^2.0.32\",\n    \"pinia-plugin-persistedstate\": \"^3.1.0\",\n    \"vue\": \"^3.2.45\",\n    \"vue-router\": \"^4.1.6\"\n  },\n  \"devDependencies\": {\n    \"@types/node\": \"^18.14.0\",\n    \"@typescript-eslint/eslint-plugin\": \"^5.53.0\",\n    \"@typescript-eslint/parser\": \"^5.53.0\",\n    \"@vicons/ionicons5\": \"^0.12.0\",\n    \"@vitejs/plugin-vue\": \"^4.0.0\",\n    \"eslint\": \"^8.34.0\",\n    \"eslint-config-prettier\": \"^8.6.0\",\n    \"eslint-plugin-prettier\": \"^4.2.1\",\n    \"naive-ui\": \"^2.34.3\",\n    \"prettier\": \"^2.8.4\",\n    \"typescript\": \"^4.9.3\",\n    \"unplugin-auto-import\": \"^0.14.4\",\n    \"unplugin-vue-components\": \"^0.24.0\",\n    \"vite\": \"^4.1.0\",\n    \"vite-plugin-style-import\": \"^2.0.0\",\n    \"vite-plugin-vue-setup-extend\": \"^0.4.0\",\n    \"vite-plugin-windicss\": \"^1.8.10\",\n    \"vue-eslint-parser\": \"^9.1.0\",\n    \"vue-tsc\": \"^1.0.24\",\n    \"windicss\": \"^3.5.6\"\n  },\n  \"prettier\": {\n    \"tabWidth\": 2,\n    \"semi\": false, // 不使用分号\n    \"printWidth\": 160,\n    \"singleQuote\": true, // 使用单引号\n    \"quoteProps\": \"consistent\",\n    \"bracketSpacing\": true, // 在对象,数组括号与文字之间加空格\n    \"htmlWhitespaceSensitivity\": \"ignore\", // 对html的空格不敏感\n    \"endOfLine\": \"auto\", // 行结尾统一样式，保持现有的行尾\n    \"trailingComma\": \"none\", // 对象，数组等末尾不加逗号\n    \"vueIndentScriptAndStyle\": true,\n  }\n}"
+        }
+    ]
+}

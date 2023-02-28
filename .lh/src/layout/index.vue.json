@@ -1,0 +1,54 @@
+{
+    "sourceFile": "src/layout/index.vue",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 9,
+            "patches": [
+                {
+                    "date": 1677120863641,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1677120875213,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,7 +7,7 @@\n <script setup lang=\"ts\">\r\n \r\n </script>\r\n \r\n-<style scoped>\r\n+<style lang=\"less\" scoped>\r\n \r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1677121393964,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,13 +1,20 @@\n <template>\r\n-  <div>\r\n-\r\n-  </div>\r\n+\t<n-layout has-sider>\r\n+\t\t<n-layout-sider\r\n+\t\t\tcollapse-mode=\"transform\"\r\n+\t\t\t:collapsed-width=\"120\"\r\n+\t\t\t:width=\"240\"\r\n+\t\t\tshow-trigger=\"bar\"\r\n+\t\t\tcontent-style=\"padding: 24px;\"\r\n+\t\t\tbordered>\r\n+\t\t\t<!-- 菜单 -->\r\n\\ No newline at end of file\n+\t\t</n-layout-sider>\r\n+\t\t<n-layout-content content-style=\"padding: 24px;\">\r\n+      <router-view />\r\n+    </n-layout-content>\r\n+\t</n-layout>\r\n </template>\r\n \r\n-<script setup lang=\"ts\">\r\n+<script setup lang=\"ts\"></script>\r\n \r\n-</script>\r\n-\r\n-<style lang=\"less\" scoped>\r\n-\r\n-</style>\n+<style lang=\"less\" scoped></style>\r\n"
+                },
+                {
+                    "date": 1677123732181,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,14 +7,17 @@\n \t\t\tshow-trigger=\"bar\"\r\n \t\t\tcontent-style=\"padding: 24px;\"\r\n \t\t\tbordered>\r\n \t\t\t<!-- 菜单 -->\r\n+\t\t\t<mu-menu />\r\n \t\t</n-layout-sider>\r\n \t\t<n-layout-content content-style=\"padding: 24px;\">\r\n-      <router-view />\r\n-    </n-layout-content>\r\n+\t\t\t<router-view />\r\n+\t\t</n-layout-content>\r\n \t</n-layout>\r\n </template>\r\n \r\n\\ No newline at end of file\n-<script setup lang=\"ts\"></script>\r\n+<script setup lang=\"ts\">\r\n+\timport { MuMenu } from './components'\r\n+</script>\r\n \r\n-<style lang=\"less\" scoped></style>\n+<style lang=\"less\" scoped></style>\r\n"
+                },
+                {
+                    "date": 1677123744768,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n \t\t</n-layout-content>\r\n \t</n-layout>\r\n </template>\r\n \r\n-<script setup lang=\"ts\">\r\n+<script setup lang=\"ts\" name=\"MainLayout\">\r\n \timport { MuMenu } from './components'\r\n </script>\r\n \r\n\\ No newline at end of file\n-<style lang=\"less\" scoped></style>\n+<style lang=\"less\" scoped></style>\r\n"
+                },
+                {
+                    "date": 1677124604535,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,8 @@\n \t\t\tcollapse-mode=\"transform\"\r\n \t\t\t:collapsed-width=\"120\"\r\n \t\t\t:width=\"240\"\r\n \t\t\tshow-trigger=\"bar\"\r\n-\t\t\tcontent-style=\"padding: 24px;\"\r\n \t\t\tbordered>\r\n \t\t\t<!-- 菜单 -->\r\n \t\t\t<mu-menu />\r\n \t\t</n-layout-sider>\r\n@@ -19,5 +18,5 @@\n <script setup lang=\"ts\" name=\"MainLayout\">\r\n \timport { MuMenu } from './components'\r\n </script>\r\n \r\n-<style lang=\"less\" scoped></style>\n\\ No newline at end of file\n+<style lang=\"less\" scoped></style>\r\n"
+                },
+                {
+                    "date": 1677124646153,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,15 +1,7 @@\n <template>\r\n \t<n-layout has-sider>\r\n-\t\t<n-layout-sider\r\n-\t\t\tcollapse-mode=\"transform\"\r\n-\t\t\t:collapsed-width=\"120\"\r\n-\t\t\t:width=\"240\"\r\n-\t\t\tshow-trigger=\"bar\"\r\n-\t\t\tbordered>\r\n-\t\t\t<!-- 菜单 -->\r\n-\t\t\t<mu-menu />\r\n-\t\t</n-layout-sider>\r\n+\t\t<mu-menu />\r\n \t\t<n-layout-content content-style=\"padding: 24px;\">\r\n \t\t\t<router-view />\r\n \t\t</n-layout-content>\r\n \t</n-layout>\r\n"
+                },
+                {
+                    "date": 1677466118924,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,7 @@\n <template>\r\n \t<n-layout has-sider>\r\n+\r\n \t\t<mu-menu />\r\n \t\t<n-layout-content content-style=\"padding: 24px;\">\r\n \t\t\t<router-view />\r\n \t\t</n-layout-content>\r\n"
+                },
+                {
+                    "date": 1677466136402,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,9 @@\n <template>\r\n   <n-layout has-sider>\r\n+    <!-- 菜单 -->\r\n     <mu-menu />\r\n+    <!-- 头部 -->\r\n     <n-layout-content content-style=\"padding: 24px;\">\r\n       <router-view />\r\n     </n-layout-content>\r\n   </n-layout>\r\n"
+                },
+                {
+                    "date": 1677466163755,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,16 +2,16 @@\n   <n-layout has-sider>\r\n     <!-- 菜单 -->\r\n     <mu-menu />\r\n     <!-- 头部 -->\r\n-\r\n+    <mu-header />\r\n     <n-layout-content content-style=\"padding: 24px;\">\r\n       <router-view />\r\n     </n-layout-content>\r\n   </n-layout>\r\n </template>\r\n \r\n <script setup lang=\"ts\" name=\"MainLayout\">\r\n-  import { MuMenu } from './components'\r\n+  import { MuMenu, MuHeader } from './components'\r\n </script>\r\n \r\n <style lang=\"less\" scoped></style>\r\n"
+                }
+            ],
+            "date": 1677120863641,
+            "name": "Commit-0",
+            "content": "<template>\r\n  <div>\r\n\r\n  </div>\r\n</template>\r\n\r\n<script setup lang=\"ts\">\r\n\r\n</script>\r\n\r\n<style scoped>\r\n\r\n</style>"
+        }
+    ]
+}

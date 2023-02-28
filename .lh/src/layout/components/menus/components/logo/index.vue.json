@@ -1,0 +1,54 @@
+{
+    "sourceFile": "src/layout/components/menus/components/logo/index.vue",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 9,
+            "patches": [
+                {
+                    "date": 1677209020096,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1677209028970,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,13 +1,19 @@\n <template>\r\n-  <div>\r\n-\r\n+  <div\r\n+    class=\"flex px-18px py-5px items-center overflow-hidden\"\r\n+    :class=\"{ 'justify-center': collapsed, 'px-0': collapsed }\"\r\n+    :style=\"{\r\n+      transition: 'all .3'\r\n+    }\"\r\n+  >\r\n+    <n-space>\r\n+      <n-avatar size=\"small\" :src=\"logo\" :style=\"{ 'background-color': 'transparent' }\" />\r\n+      <span v-if=\"!collapsed\">MuYu</span>\r\n\\ No newline at end of file\n+    </n-space>\r\n   </div>\r\n+  <div></div>\r\n </template>\r\n \r\n-<script setup lang=\"ts\">\r\n+<script setup lang=\"ts\"></script>\r\n \r\n-</script>\r\n-\r\n-<style scoped>\r\n-\r\n-</style>\n+<style scoped></style>\r\n"
+                },
+                {
+                    "date": 1677209134380,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,7 +13,9 @@\n   </div>\r\n   <div></div>\r\n </template>\r\n \r\n-<script setup lang=\"ts\"></script>\r\n+<script setup lang=\"ts\" name=\"MuLogo\">\r\n+  defineProps<{ collapsed: boolean }>()\r\n+</script>\r\n \r\n <style scoped></style>\r\n"
+                },
+                {
+                    "date": 1677209165219,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,18 +1,19 @@\n <template>\r\n   <div\r\n+    v-if=\"!collapsed\"\r\n     class=\"flex px-18px py-5px items-center overflow-hidden\"\r\n     :class=\"{ 'justify-center': collapsed, 'px-0': collapsed }\"\r\n     :style=\"{\r\n       transition: 'all .3'\r\n     }\"\r\n   >\r\n     <n-space>\r\n       <n-avatar size=\"small\" :src=\"logo\" :style=\"{ 'background-color': 'transparent' }\" />\r\n-      <span v-if=\"!collapsed\">MuYu</span>\r\n+      <span>MuYu</span>\r\n     </n-space>\r\n   </div>\r\n-  <div></div>\r\n+  <div v-else></div>\r\n </template>\r\n \r\n <script setup lang=\"ts\" name=\"MuLogo\">\r\n   defineProps<{ collapsed: boolean }>()\r\n"
+                },
+                {
+                    "date": 1677209170962,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,13 +1,6 @@\n <template>\r\n-  <div\r\n-    v-if=\"!collapsed\"\r\n-    class=\"flex px-18px py-5px items-center overflow-hidden\"\r\n-    :class=\"{ 'justify-center': collapsed, 'px-0': collapsed }\"\r\n-    :style=\"{\r\n-      transition: 'all .3'\r\n-    }\"\r\n-  >\r\n+  <div v-if=\"!collapsed\" class=\"flex px-18px py-5px items-center overflow-hidden\" :class=\"{ 'justify-center': collapsed, 'px-0': collapsed }\">\r\n     <n-space>\r\n       <n-avatar size=\"small\" :src=\"logo\" :style=\"{ 'background-color': 'transparent' }\" />\r\n       <span>MuYu</span>\r\n     </n-space>\r\n"
+                },
+                {
+                    "date": 1677209194095,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,15 +1,16 @@\n <template>\r\n   <div v-if=\"!collapsed\" class=\"flex px-18px py-5px items-center overflow-hidden\" :class=\"{ 'justify-center': collapsed, 'px-0': collapsed }\">\r\n     <n-space>\r\n-      <n-avatar size=\"small\" :src=\"logo\" :style=\"{ 'background-color': 'transparent' }\" />\r\n+      <n-avatar size=\"small\" src=\"assets/\" :style=\"{ 'background-color': 'transparent' }\" />\r\n       <span>MuYu</span>\r\n     </n-space>\r\n   </div>\r\n   <div v-else></div>\r\n </template>\r\n \r\n <script setup lang=\"ts\" name=\"MuLogo\">\r\n+\r\n   defineProps<{ collapsed: boolean }>()\r\n </script>\r\n \r\n <style scoped></style>\r\n"
+                },
+                {
+                    "date": 1677209202278,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n <template>\r\n   <div v-if=\"!collapsed\" class=\"flex px-18px py-5px items-center overflow-hidden\" :class=\"{ 'justify-center': collapsed, 'px-0': collapsed }\">\r\n     <n-space>\r\n-      <n-avatar size=\"small\" src=\"assets/\" :style=\"{ 'background-color': 'transparent' }\" />\r\n+      <n-avatar size=\"small\" src=\"assets/vue.svg\" :style=\"{ 'background-color': 'transparent' }\" />\r\n       <span>MuYu</span>\r\n     </n-space>\r\n   </div>\r\n   <div v-else></div>\r\n"
+                },
+                {
+                    "date": 1677209207936,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n <template>\r\n   <div v-if=\"!collapsed\" class=\"flex px-18px py-5px items-center overflow-hidden\" :class=\"{ 'justify-center': collapsed, 'px-0': collapsed }\">\r\n     <n-space>\r\n-      <n-avatar size=\"small\" src=\"assets/vue.svg\" :style=\"{ 'background-color': 'transparent' }\" />\r\n+      <n-avatar size=\"small\" src=\"/assets/vue.svg\" :style=\"{ 'background-color': 'transparent' }\" />\r\n       <span>MuYu</span>\r\n     </n-space>\r\n   </div>\r\n   <div v-else></div>\r\n"
+                },
+                {
+                    "date": 1677209227463,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n       <n-avatar size=\"small\" src=\"/assets/vue.svg\" :style=\"{ 'background-color': 'transparent' }\" />\r\n       <span>MuYu</span>\r\n     </n-space>\r\n   </div>\r\n-  <div v-else></div>\r\n+  <div v-else class=\"flex px-18px py-5px items-center overflow-hidden\" :class=\"{ 'justify-center': collapsed, 'px-0': collapsed }\"></div>\r\n </template>\r\n \r\n <script setup lang=\"ts\" name=\"MuLogo\">\r\n   defineProps<{ collapsed: boolean }>()\r\n"
+                },
+                {
+                    "date": 1677209235741,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,11 @@\n       <n-avatar size=\"small\" src=\"/assets/vue.svg\" :style=\"{ 'background-color': 'transparent' }\" />\r\n       <span>MuYu</span>\r\n     </n-space>\r\n   </div>\r\n-  <div v-else class=\"flex px-18px py-5px items-center overflow-hidden\" :class=\"{ 'justify-center': collapsed, 'px-0': collapsed }\"></div>\r\n+  <div v-else class=\"flex px-18px py-5px items-center overflow-hidden\" :class=\"{ 'justify-center': collapsed, 'px-0': collapsed }\">\r\n+    <n-avatar size=\"small\" src=\"/assets/vue.svg\" :style=\"{ 'background-color': 'transparent' }\" />\r\n+  </div>\r\n </template>\r\n \r\n <script setup lang=\"ts\" name=\"MuLogo\">\r\n   defineProps<{ collapsed: boolean }>()\r\n"
+                }
+            ],
+            "date": 1677209020096,
+            "name": "Commit-0",
+            "content": "<template>\r\n  <div>\r\n\r\n  </div>\r\n</template>\r\n\r\n<script setup lang=\"ts\">\r\n\r\n</script>\r\n\r\n<style scoped>\r\n\r\n</style>"
+        }
+    ]
+}

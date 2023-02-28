@@ -1,0 +1,62 @@
+{
+    "sourceFile": "plugins/autoImport.ts",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 11,
+            "patches": [
+                {
+                    "date": 1677121661632,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1677121679075,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,11 +1,10 @@\n-import AutoImport from 'unplugin-auto-import/vite'\r\n+import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'\r\n import Components from 'unplugin-vue-components/vite'\r\n-import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'\r\n \r\n-export default function NaiveAutoImport(){\r\n-  return Components({\r\n-    dts: 'src/types/auto-import.d.ts',\r\n-    dirs: ['src/components'],\r\n-    resolvers: [NaiveUiResolver()],\r\n-  })\r\n+export default function NaiveAutoImport() {\r\n+\treturn Components({\r\n+\t\tdts: 'src/types/auto-import.d.ts',\r\n+\t\tdirs: ['src/components'],\r\n+\t\tresolvers: [NaiveUiResolver()]\r\n+\t})\r\n }\r\n"
+                },
+                {
+                    "date": 1677121752271,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,5 @@\n-import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'\r\n-import Components from 'unplugin-vue-components/vite'\r\n+import AutoImport from 'unplugin-auto-import/vite'\r\n \r\n-export default function NaiveAutoImport() {\r\n-\treturn Components({\r\n-\t\tdts: 'src/types/auto-import.d.ts',\r\n-\t\tdirs: ['src/components'],\r\n-\t\tresolvers: [NaiveUiResolver()]\r\n-\t})\r\n-}\r\n+export default function NaiveAutoImport(){\r\n+\r\n+}\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1677121782694,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,7 @@\n import AutoImport from 'unplugin-auto-import/vite'\r\n \r\n export default function NaiveAutoImport(){\r\n-\r\n+return AutoImport({\r\n+  dts: 'src/types/'\r\n+})\r\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1677121810909,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,8 @@\n import AutoImport from 'unplugin-auto-import/vite'\r\n \r\n-export default function NaiveAutoImport(){\r\n-return AutoImport({\r\n-  dts: 'src/types/'\r\n-})\r\n-}\n\\ No newline at end of file\n+export default function NaiveAutoImport() {\r\n+\treturn AutoImport({\r\n+\t\tdts: 'src/types/auto-import.d.ts',\r\n+\t\timports: ['vue', 'vue-router', 'pinia']\r\n+\t})\r\n+}\r\n"
+                },
+                {
+                    "date": 1677121833735,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,7 +2,14 @@\n \r\n export default function NaiveAutoImport() {\r\n \treturn AutoImport({\r\n \t\tdts: 'src/types/auto-import.d.ts',\r\n-\t\timports: ['vue', 'vue-router', 'pinia']\r\n+\t\timports: [\r\n+\t\t\t'vue',\r\n+\t\t\t'vue-router',\r\n+\t\t\t'pinia',\r\n+\t\t\t{\r\n+\t\t\t\t'naive-ui': ['useDialog', 'useMessage', 'useNotification', 'useLoadingBar']\r\n+\t\t\t}\r\n+\t\t]\r\n \t})\r\n }\r\n"
+                },
+                {
+                    "date": 1677124209197,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n \t\t\t'vue',\r\n \t\t\t'vue-router',\r\n \t\t\t'pinia',\r\n \t\t\t{\r\n-\t\t\t\t'naive-ui': ['useDialog', 'useMessage', 'useNotification', 'useLoadingBar']\r\n+\t\t\t\t'naive-ui': ['useDialog', 'useMessage', 'useNotification', 'useLoadingBar', 'NIcon']\r\n \t\t\t}\r\n \t\t]\r\n \t})\r\n }\r\n"
+                },
+                {
+                    "date": 1677125797378,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,8 +8,11 @@\n \t\t\t'vue-router',\r\n \t\t\t'pinia',\r\n \t\t\t{\r\n \t\t\t\t'naive-ui': ['useDialog', 'useMessage', 'useNotification', 'useLoadingBar', 'NIcon']\r\n+\t\t\t},\r\n+\t\t\t{\r\n+\t\t\t\t'src/store': ['useSettingStore']\r\n \t\t\t}\r\n \t\t]\r\n \t})\r\n }\r\n"
+                },
+                {
+                    "date": 1677125853840,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,8 +6,9 @@\n \t\timports: [\r\n \t\t\t'vue',\r\n \t\t\t'vue-router',\r\n \t\t\t'pinia',\r\n+\t\t\t'src/store',\r\n \t\t\t{\r\n \t\t\t\t'naive-ui': ['useDialog', 'useMessage', 'useNotification', 'useLoadingBar', 'NIcon']\r\n \t\t\t},\r\n \t\t\t{\r\n"
+                },
+                {
+                    "date": 1677125860564,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,11 +9,8 @@\n \t\t\t'pinia',\r\n \t\t\t'src/store',\r\n \t\t\t{\r\n \t\t\t\t'naive-ui': ['useDialog', 'useMessage', 'useNotification', 'useLoadingBar', 'NIcon']\r\n-\t\t\t},\r\n-\t\t\t{\r\n-\t\t\t\t'src/store': ['useSettingStore']\r\n \t\t\t}\r\n \t\t]\r\n \t})\r\n }\r\n"
+                },
+                {
+                    "date": 1677125866863,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n \t\timports: [\r\n \t\t\t'vue',\r\n \t\t\t'vue-router',\r\n \t\t\t'pinia',\r\n-\t\t\t'src/store',\r\n+\r\n \t\t\t{\r\n \t\t\t\t'naive-ui': ['useDialog', 'useMessage', 'useNotification', 'useLoadingBar', 'NIcon']\r\n \t\t\t}\r\n \t\t]\r\n"
+                },
+                {
+                    "date": 1677125897510,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,13 +2,13 @@\n \r\n export default function NaiveAutoImport() {\r\n \treturn AutoImport({\r\n \t\tdts: 'src/types/auto-import.d.ts',\r\n+\t\tdirs:['src/store',],\r\n \t\timports: [\r\n \t\t\t'vue',\r\n \t\t\t'vue-router',\r\n \t\t\t'pinia',\r\n-\r\n \t\t\t{\r\n \t\t\t\t'naive-ui': ['useDialog', 'useMessage', 'useNotification', 'useLoadingBar', 'NIcon']\r\n \t\t\t}\r\n \t\t]\r\n"
+                }
+            ],
+            "date": 1677121661632,
+            "name": "Commit-0",
+            "content": "import AutoImport from 'unplugin-auto-import/vite'\r\nimport Components from 'unplugin-vue-components/vite'\r\nimport { NaiveUiResolver } from 'unplugin-vue-components/resolvers'\r\n\r\nexport default function NaiveAutoImport(){\r\n  return Components({\r\n    dts: 'src/types/auto-import.d.ts',\r\n    dirs: ['src/components'],\r\n    resolvers: [NaiveUiResolver()],\r\n  })\r\n}\r\n"
+        }
+    ]
+}

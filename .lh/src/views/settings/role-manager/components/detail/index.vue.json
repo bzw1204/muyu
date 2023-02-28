@@ -1,0 +1,26 @@
+{
+    "sourceFile": "src/views/settings/role-manager/components/detail/index.vue",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1677144931820,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1677206185221,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,9 @@\n <template>\r\n \t<div>详情</div>\r\n+\t<n-button type=\"info\">\r\n+\t\t<router-link to=\"/settings/role-manager\">返回</router-link>\r\n+\t</n-button>\r\n </template>\r\n \r\n <script setup lang=\"ts\"></script>\r\n \r\n"
+                },
+                {
+                    "date": 1677206330901,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,13 @@\n <template>\r\n   <div>详情</div>\r\n-  <n-button type=\"info\">\r\n-    <router-link to=\"/settings/role-manager\">返回</router-link>\r\n-  </n-button>\r\n+  <n-button color=\"#ff69b4\" @click=\"goBack\">返回</n-button>\r\n </template>\r\n \r\n-<script setup lang=\"ts\"></script>\r\n+<script setup lang=\"ts\">\r\n+  const router = useRouter()\r\n+  const goBack = () => {\r\n+    router.push({ path: '/settings/role-manager' })\r\n+  }\r\n+</script>\r\n \r\n <style scoped></style>\r\n"
+                }
+            ],
+            "date": 1677144931820,
+            "name": "Commit-0",
+            "content": "<template>\r\n\t<div>详情</div>\r\n</template>\r\n\r\n<script setup lang=\"ts\"></script>\r\n\r\n<style scoped></style>\r\n"
+        }
+    ]
+}

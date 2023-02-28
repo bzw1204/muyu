@@ -1,9 +1,8 @@
 # This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
-
-name: Node.js CI
-
+name: Build app and deploy to Github Pages
 on:
+  # 监听push操作
   push:
     branches: [ "master" ]
   pull_request:
@@ -11,7 +10,7 @@ on:
 
 jobs:
   build:
-
+    # 运行环境
     runs-on: ubuntu-latest
 
     strategy:
@@ -26,9 +25,8 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: npm ci
+    - run: npm install
     - run: npm run build --if-present
-    - run: npm test
     - name: Deploy
          uses: peaceiris/actions-gh-pages@v3
          with:

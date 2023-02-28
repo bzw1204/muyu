@@ -7,10 +7,11 @@ import { resolve } from 'path'
 import { NaiveAutoImport, NaiveResolver } from './plugins'
 
 export default defineConfig({
-	plugins: [vue(), VueSetupExtend(), WindiCSS(), NaiveAutoImport(), NaiveResolver()],
-	resolve: {
-		alias: {
-			'@': resolve(__dirname, '.', 'src')
-		}
-	}
+  base: './',
+  plugins: [vue(), VueSetupExtend(), WindiCSS(), NaiveAutoImport(), NaiveResolver()],
+  resolve: {
+    alias: {
+      '@': resolve(__dirname, '.', 'src')
+    }
+  }
 })

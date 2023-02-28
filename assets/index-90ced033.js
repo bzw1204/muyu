@@ -1,0 +1,1 @@
+import{d as _,h as c,o as p,i as r,w as e,b as t,a as u,_ as i,g as l}from"./index-fe164c70.js";const h=_({__name:"index",setup(m){const n=c(),o=()=>{n.push({path:"/settings/role-manager/detail"})};return(d,f)=>{const a=i,s=l;return p(),r(s,null,{default:e(()=>[t(" 角色管理 "),u(a,{type:"primary",onClick:o},{default:e(()=>[t("详情")]),_:1})]),_:1})}}});export{h as default};

@@ -1,1 +1,0 @@
-import{_ as r}from"./index-1d4c8060.js";import{E as e,G as i}from"./vue-27084a23.js";import"./naive-ui-9ab84a0f.js";const n=r({},[["render",function(r,n){return e(),i("div",null,"用户详情")}]]);export{n as default};

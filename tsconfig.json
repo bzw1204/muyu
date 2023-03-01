@@ -13,7 +13,7 @@
     "esModuleInterop": true,
     "lib": [
       "ESNext",
-      "DOM"
+      "DOM",
     ],
     "composite": true,
     "noEmit": true,
@@ -24,7 +24,8 @@
       ]
     },
     "types": [
-      "naive-ui/volar"
+      "naive-ui/volar",
+      "@types/node"
     ]
   },
   "include": [

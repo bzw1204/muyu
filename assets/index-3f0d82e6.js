@@ -1,0 +1,1 @@
+import{_ as s}from"./index-a9ea4fa7.js";import{G as n,H as r,I as e}from"./vue-d8cc9aff.js";import"./naive-ui-589855dc.js";const t={},i=[e("div",{class:"w-100px h-100px bg-green-400 mt-100px"},null,-1)];const o=s(t,[["render",function(s,e){return n(),r("div",null,i)}]]);export{o as default};

@@ -2,15 +2,15 @@
   <div class="w-full h-[calc(100%_-_200px)] flex justify-between gap-x-20px">
     <div class="w-200px h-full flex flex-col gap-y-10px">
       <n-scrollbar class="w-200px max-h-[calc(100vh_-_100px)]">
-        <n-anchor type="block" :ignore-gap="true">
-          <n-anchor-link v-for="(value, key) in result" :key="key" :title="key" :href="`#${key}`" @click="handleHref(key)" />
-        </n-anchor>
+        <n-space vertical>
+          <n-button text v-for="(value, key) in result" :key="key" :title="key" @click="handleHref(key)">{{ key }}</n-button>
+        </n-space>
       </n-scrollbar>
     </div>
 
     <div class="w-[calc(100%_-_550px)] flex flex-col gap-y-10px">
       <n-scrollbar style="width: 100%; max-height: calc(100vh - 130px)">
-        <n-collapse :expanded-names="expandedNames">
+        <n-collapse ref="anchorRef" :expanded-names="expandedNames" @update:expanded-names="handleExpanded">
           <n-collapse-item :id="key" v-for="(value, key) in result" :key="key" :title="value[0].categoryCN" :name="key">
             <template #header-extra>
               <n-text type="error">图标数量 ({{ value.length }})</n-text>
@@ -172,14 +172,24 @@
   ]
   const expandedNames = ref<string[]>([])
   const result = ref<Record<string, any>>()
-  const values = ref<IconProps[]>([])
+
+  const anchorRef = ref()
+  function goAnchor(selector: string) {
+    document.querySelector(selector)?.scrollIntoView({
+      behavior: 'smooth', // 平滑过渡
+      block: 'start', // 上边框与视窗顶部平齐。默认值
+      inline: 'start'
+    })
+  }
+  const handleExpanded = (names: string[]) => {
+    expandedNames.value = names
+  }
   const handleHref = (href: string) => {
     expandedNames.value = [href]
+    setTimeout(() => goAnchor(`#${href}`), 500)
   }
-
   onMounted(() => {
     result.value = groupBy(IconJSON, 'categoryCN')
-    values.value = (result.value && result.value['Clothes']) || []
   })
 </script>
 

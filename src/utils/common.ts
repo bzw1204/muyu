@@ -14,3 +14,25 @@ export function unique<T, K extends keyof T>(arr: T[], key: K) {
   })
   return [...map.values()]
 }
+
+/**
+ * 根据数组对象中某一属性进行分组
+ */
+export function groupBy<T, K extends keyof T>(arr: T[], key: K): Record<any, any> {
+  // 根据数组对象中某一属性进行分组
+  const result: Record<any, any> = {}
+  return arr.reduce((total, item) => {
+    // @ts-ignore
+    ;(total[item[key]] = total[item[key]] || []).push(item)
+    return total
+  }, result)
+  // => {男: [{name: "lilei", label: "男"}, {name: "jim", label: "男"}], 女: [{name: "hanmeimei", label: "女"}, {name: "lucy", label: "女"}]}
+
+  //或者
+  // let result = arr.reduce((total, item) => {
+  //   total[item.label] = total[item.label] || []
+  //   total[item.label].push(item)
+  //   return total
+  // }, {})
+  // => {男: [{name: "lilei", label: "男"}, {name: "jim", label: "男"}], 女: [{name: "hanmeimei", label: "女"}, {name: "lucy", label: "女"}]}
+}
